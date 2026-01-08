@@ -4,7 +4,8 @@ namespace AgentLogic.Testing
 {
     public class BlobIdleAction: AgentAction<BlobBrain>
     {
-        private float _waitTime;
+        private readonly float _waitTime;
+        private float _timeSinceStart;
 
         public BlobIdleAction(float waitTime)
         {
@@ -13,17 +14,20 @@ namespace AgentLogic.Testing
 
         public override void OnStart(BlobBrain agent)
         {
-            throw new System.NotImplementedException();
+            _timeSinceStart = 0f;
+            
         }
 
         public override void OnStop(BlobBrain agent)
         {
-            throw new System.NotImplementedException();
+            // Don't do anything
         }
 
         public override bool Tick(BlobBrain agent, float deltaTime)
         {
-            throw new System.NotImplementedException();
+            _timeSinceStart += deltaTime;
+            
+            return _timeSinceStart >= _waitTime;
         }
     }
 }
