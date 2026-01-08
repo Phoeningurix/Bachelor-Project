@@ -37,10 +37,10 @@ namespace Testing
         // Update is called once per frame
         void Update()
         {
-            if (_brain.happiness > 0)
+            if (_brain.emotions["happiness"].Value> 0)
             {
                 SetSprite(spriteHappyBlob);
-            } else if (_brain.happiness < 0)
+            } else if (_brain.emotions["happiness"].Value < 0)
             {
                 SetSprite(spriteSadBlob);
             }

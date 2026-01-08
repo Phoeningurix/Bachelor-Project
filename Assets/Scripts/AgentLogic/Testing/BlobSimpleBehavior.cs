@@ -12,7 +12,7 @@ namespace AgentLogic.Testing
         
         public override AgentAction<BlobBrain> GetAction(BlobBrain brain)
         {
-            float wanderProbability = Mathf.Clamp01(brain.happiness / 2f + 0.5f);
+            float wanderProbability = Mathf.Clamp01(brain.emotions["happiness"].Value / 2f + 0.5f);
             if (Random.value <= wanderProbability)
             {
                 return new BlobWanderAction(wanderRadius, wanderTime);

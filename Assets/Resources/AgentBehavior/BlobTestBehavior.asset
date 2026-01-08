@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c8f1397efb4b5397eeeaf1ce53fafd, type: 3}
   m_Name: BlobTestBehavior
   m_EditorClassIdentifier: Assembly-CSharp::AgentLogic.Testing.BlobSimpleBehavior
-  wanderRadius: 1
-  wanderTime: 1
-  waitTime: 2
+  wanderRadius: 2
+  wanderTime: 0.5
+  waitTime: 1

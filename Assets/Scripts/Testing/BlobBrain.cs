@@ -1,11 +1,13 @@
 using AgentLogic;
 using UnityEngine;
+using Utils.Observables;
 
 namespace Testing
 {
     public class BlobBrain : MonoBehaviour
     {
-        public float happiness = 0;
+        //public float happiness = 0;
+        public ObservableFloatRegistry emotions;
         public AgentBehavior<BlobBrain> behavior;
         
         private AgentAction<BlobBrain> _currentAction;
