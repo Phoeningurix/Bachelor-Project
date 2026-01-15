@@ -1,6 +1,4 @@
-﻿using AgentLogic.BehaviorTree;
-
-namespace AgentLogic
+﻿namespace AgentLogic.AgentActions
 {
     public abstract class AgentAction
     {

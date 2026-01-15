@@ -1,27 +1,27 @@
-﻿namespace AgentLogic.BehaviorTree
+﻿using System.Collections.Generic;
+using AgentLogic.AgentActions.BlobActions;
+using UnityEngine;
+
+namespace AgentLogic.BehaviorTree
 {
     public class SimpleBlobBehaviorTree : BehaviorTree
     {
         
-        public float WanderTime = 2f;
-        public float WaitTime = 0.5f;
+        private readonly float _wanderTime = 2f;
+        private readonly float _waitTime = 2f;
 
         public SimpleBlobBehaviorTree(BlobBrain brain)
         {
-            Root = new BTConditionNode(() => brain.emotions["happyness"].Value > 0f);
-
-
-
-            /*root = new SelectorBlobNode(new List<BlobNode>
+            Root = new BTSelectorNode(new List<BTNode>
             {
-                new Sequence(new List<BlobNode>
+                new BTSequenceNode(new List<BTNode>
                 {
-                    new BlobWanderConditionNode(brain),
-                    new BlobWanderTargetNode(brain),
-                    new BlobWanderNode(brain, wanderTime)
+                    new BTConditionNode(() => Random.value <= Mathf.Clamp01(brain.emotions["happiness"].Value / 2f + 0.5f)),
+                    new BTActionNode(new BlobWanderTargetAction(brain)),
+                    new BTActionNode(new BlobWanderAction(brain, _wanderTime)),
                 }),
-                new BlobIdleNode(brain, waitTime)
-            });*/
+                new BTActionNode(new BlobIdleAction(brain, _waitTime)),
+            });
         }
     }
 }

@@ -11,10 +11,10 @@ namespace AgentLogic
         [SerializeField] private AgentBehaviorSupplier<BlobBrain> behaviorSupplier;
         public ObservableFloatRegistry emotions;
         private IAgentBehavior _agentBehavior;
-        // [NonSerialized]public bool HasWanderTarget = false;
-        [NonSerialized]public bool IsIdle = false;
+
+        private IAgentBehavior AgentBehavior => _agentBehavior ??= behaviorSupplier.GetAgentBehavior(this);
         
-        public bool HasWanderTarget { get; set; }
+        public bool HasWanderTarget { get; set; } // TODO - remove
 
         public Vector3 wanderTarget;
 
@@ -26,15 +26,10 @@ namespace AgentLogic
         // public float agreeableness = 0;
         // public float neuroticism = 0;
 
-        private void Awake()
-        {
-            _agentBehavior = behaviorSupplier.GetAgentBehavior(this);
-        }
-
         // Update is called once per frame
         void FixedUpdate()
         {
-            _agentBehavior.Tick();
+            AgentBehavior.Tick();
         }
     }
 }
