@@ -1,6 +1,7 @@
+using AgentLogic;
 using UnityEngine;
 
-namespace Testing
+namespace Renderers
 {
     public class BlobRenderer : MonoBehaviour
     {

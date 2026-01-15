@@ -1,5 +1,4 @@
-﻿using Testing;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AgentLogic.Testing.BehaviorTree
 {

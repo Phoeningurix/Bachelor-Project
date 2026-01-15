@@ -1,9 +1,8 @@
-﻿using Testing;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AgentLogic.Testing
 {
-    public class BlobWanderAction: AgentAction<BlobBrain>
+    /*public class BlobWanderAction: AgentAction<BlobBrain>
     {
         private readonly float _wanderRadius;
         private readonly float _wanderTime;
@@ -40,5 +39,5 @@ namespace AgentLogic.Testing
             agent.transform.position = Vector3.Lerp(_startPosition, _wanderTarget, Mathf.Clamp01(_timeSinceStart / _wanderTime));
             return _timeSinceStart >= _wanderTime;
         }
-    }
+    }*/
 }

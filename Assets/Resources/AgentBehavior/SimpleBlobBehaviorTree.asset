@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94c8f1397efb4b5397eeeaf1ce53fafd, type: 3}
-  m_Name: BlobTestBehavior
-  m_EditorClassIdentifier: Assembly-CSharp::AgentLogic.Testing.BlobSimpleBehavior
-  wanderRadius: 2
-  wanderTime: 0.5
-  waitTime: 1
+  m_Script: {fileID: 11500000, guid: 6edea8e4e38b40a6b30a0367f9131bff, type: 3}
+  m_Name: SimpleBlobBehaviorTree
+  m_EditorClassIdentifier: Assembly-CSharp::AgentLogic.AgentBehaviorWrappers.SimpleBlobBehaviorTreeWrapper

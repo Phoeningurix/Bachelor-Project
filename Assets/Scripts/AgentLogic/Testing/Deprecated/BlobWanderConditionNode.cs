@@ -1,9 +1,9 @@
-﻿using Testing;
+﻿using AgentLogic.BehaviorTree;
 using UnityEngine;
 
-namespace AgentLogic.Testing.BehaviorTree
+namespace AgentLogic.Testing.Deprecated
 {
-    public class BlobWanderConditionNode : BlobNode
+    public class BlobWanderConditionNode : BTNode
     {
         private BlobBrain _agent;
 

@@ -1,9 +1,9 @@
-﻿using Testing;
+﻿using AgentLogic.BehaviorTree;
 using UnityEngine;
 
-namespace AgentLogic.Testing.BehaviorTree
+namespace AgentLogic.Testing.Deprecated
 {
-    public class BlobIdleNode : BlobNode
+    public class BlobIdleNode : BTNode
     {
         private readonly float _waitTime;
         private float _timeSinceStart;

@@ -1,8 +1,6 @@
-﻿using Testing;
-
-namespace AgentLogic.Testing
+﻿namespace AgentLogic.Testing
 {
-    public class BlobIdleAction: AgentAction<BlobBrain>
+    /*public class BlobIdleAction: AgentAction<BlobBrain>
     {
         private readonly float _waitTime;
         private float _timeSinceStart;
@@ -29,5 +27,5 @@ namespace AgentLogic.Testing
             
             return _timeSinceStart >= _waitTime;
         }
-    }
+    }*/
 }

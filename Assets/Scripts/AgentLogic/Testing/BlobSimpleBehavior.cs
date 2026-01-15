@@ -1,10 +1,9 @@
-﻿using Testing;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AgentLogic.Testing
 {
-    [CreateAssetMenu(fileName = "BlobSimpleBehavior", menuName = "AgentBehavior/BlobSimpleBehavior")]
-    public class BlobSimpleBehavior: AgentBehavior<BlobBrain>
+    /*[CreateAssetMenu(fileName = "BlobSimpleBehavior", menuName = "AgentBehavior/BlobSimpleBehavior")]
+    public class BlobSimpleBehavior: IAgentBehavior
     {
         public float wanderRadius = 2f;
         public float wanderTime = 1f;
@@ -23,5 +22,5 @@ namespace AgentLogic.Testing
             }
 
         }
-    }
+    }*/
 }
