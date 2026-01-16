@@ -7,22 +7,25 @@ namespace AgentLogic.AgentActions.BlobActions
         private readonly BlobBrain _agent;
         private Vector3 _startPosition;
         private float _timeSinceStart;
-        private readonly float _wanderTime;
 
-        public BlobWanderAction(BlobBrain agent, float wanderTime = 2f)
+        public BlobWanderAction(BlobBrain agent)
         {
             _agent = agent;
-            _wanderTime = wanderTime;
             _startPosition = agent.transform.position;
         }
         
         public override bool Tick()
         {
+            //Debug.Log("Wander Time: " + _wanderTime);
+            //Debug.Log("Wander Target: " + _agent.Blackboard.Get<Vector3>("wanderTarget"));
             _timeSinceStart += Time.fixedDeltaTime;
-            _agent.transform.position = Vector3.Lerp(_startPosition, _agent.wanderTarget, Mathf.Clamp01(_timeSinceStart / _wanderTime));
-            if (_timeSinceStart >= _wanderTime)
+            _agent.transform.position = Vector3.Lerp
+            (
+                _startPosition, _agent.Blackboard.Get<Vector3>("wanderTarget"),
+                Mathf.Clamp01(_timeSinceStart / _agent.Blackboard.Get<float>("wanderTime"))
+            );
+            if (_timeSinceStart >= _agent.Blackboard.Get<float>("wanderTime"))
             {
-                _agent.HasWanderTarget = false;
                 _timeSinceStart = 0f;
                 _startPosition = _agent.transform.position;
                 return true;

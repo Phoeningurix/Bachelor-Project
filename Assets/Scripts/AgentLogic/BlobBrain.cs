@@ -10,15 +10,20 @@ namespace AgentLogic
         //public float happiness = 0;
         [SerializeField] private AgentBehaviorSupplier<BlobBrain> behaviorSupplier;
         public ObservableFloatRegistry emotions;
+        public ObservableFloatRegistry personalityTraits;
         private IAgentBehavior _agentBehavior;
+        public readonly Blackboard Blackboard = new();
 
         private IAgentBehavior AgentBehavior => _agentBehavior ??= behaviorSupplier.GetAgentBehavior(this);
         
-        public bool HasWanderTarget { get; set; } // TODO - remove
 
-        public Vector3 wanderTarget;
+        void Start()
+        {
+            Blackboard.Set("wanderTime", 2f);
+            Blackboard.Set("waitTime", 2f);
+            Blackboard.Set("wanderTarget", Vector3.zero);
+        }
 
-        public ObservableFloatRegistry personalityTraits;
 
         // public float openness = 0;
         // public float conscientiousness = 0;

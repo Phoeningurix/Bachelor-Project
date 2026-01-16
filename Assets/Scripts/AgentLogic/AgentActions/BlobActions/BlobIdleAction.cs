@@ -5,14 +5,12 @@ namespace AgentLogic.AgentActions.BlobActions
 {
     public class BlobIdleAction : AgentAction
     {
-        private readonly float _waitTime;
         private float _timeSinceStart;
         private bool _isRunning;
         private readonly BlobBrain _agent;
 
-        public BlobIdleAction(BlobBrain agent, float waitTime = 1f)
+        public BlobIdleAction(BlobBrain agent)
         {
-            _waitTime = waitTime;
             _agent = agent;
         }
         
@@ -27,7 +25,7 @@ namespace AgentLogic.AgentActions.BlobActions
             
             _timeSinceStart += Time.fixedDeltaTime;
 
-            if (_timeSinceStart > _waitTime)
+            if (_timeSinceStart > _agent.Blackboard.Get<float>("wanderTime"))
             {
                 _isRunning = false;
                 return true;

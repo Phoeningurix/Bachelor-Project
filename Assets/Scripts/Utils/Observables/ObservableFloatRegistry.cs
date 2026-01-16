@@ -31,7 +31,7 @@ namespace Utils.Observables
                 if (_registry.TryGetValue(key, out var existing))
                 {
                     // key already exists - this shouldn't happen normally
-                    UnityEngine.Debug.LogWarning($"Key '{key}' already exist in ObservableFloatRegistry!");
+                    //UnityEngine.Debug.LogWarning($"Key '{key}' already exist in ObservableFloatRegistry!");
                     existing.Value = value.Value;
                 }
                 else

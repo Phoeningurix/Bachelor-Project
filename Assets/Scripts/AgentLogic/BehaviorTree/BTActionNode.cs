@@ -1,5 +1,6 @@
 ﻿
 using AgentLogic.AgentActions;
+using UnityEngine;
 
 namespace AgentLogic.BehaviorTree
 {
@@ -20,6 +21,7 @@ namespace AgentLogic.BehaviorTree
             }
             catch
             {
+                Debug.LogWarning($"Failed ticking action '{_action}'.");
                 return NodeState.Failure;
             }
         }

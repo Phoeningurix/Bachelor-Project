@@ -7,8 +7,6 @@ namespace AgentLogic.BehaviorTree
     public class SimpleBlobBehaviorTree : BehaviorTree
     {
         
-        private readonly float _wanderTime = 2f;
-        private readonly float _waitTime = 2f;
 
         public SimpleBlobBehaviorTree(BlobBrain brain)
         {
@@ -18,9 +16,9 @@ namespace AgentLogic.BehaviorTree
                 {
                     new BTConditionNode(() => Random.value <= Mathf.Clamp01(brain.emotions["happiness"].Value / 2f + 0.5f)),
                     new BTActionNode(new BlobWanderTargetAction(brain)),
-                    new BTActionNode(new BlobWanderAction(brain, _wanderTime)),
+                    new BTActionNode(new BlobWanderAction(brain)),
                 }),
-                new BTActionNode(new BlobIdleAction(brain, _waitTime)),
+                new BTActionNode(new BlobIdleAction(brain)),
             });
 
             /*Root = new BTSequenceNode(new List<BTNode>
@@ -28,7 +26,7 @@ namespace AgentLogic.BehaviorTree
                 new BTSequenceNode(new List<BTNode>
                 {
                     new BTActionNode(new BlobWanderTargetAction(brain)),
-                    new BTActionNode(new BlobWanderAction(brain, _wanderTime))
+                    new BTActionNode(new BlobWanderAction(brain)),
                 }).Repeat(2),
                 new BTActionNode(new BlobIdleAction(brain))
             });*/
