@@ -21,9 +21,5 @@ namespace AgentLogic.BehaviorTree
             }
         }
     }
-
-    public static class BTInvertNodeExtensions
-    {
-        public static BTNode Invert(this BTNode node) => new BTInvertNode(node);
-    }
+    
 }

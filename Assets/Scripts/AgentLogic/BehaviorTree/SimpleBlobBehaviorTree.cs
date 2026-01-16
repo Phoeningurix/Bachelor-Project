@@ -22,6 +22,16 @@ namespace AgentLogic.BehaviorTree
                 }),
                 new BTActionNode(new BlobIdleAction(brain, _waitTime)),
             });
+
+            /*Root = new BTSequenceNode(new List<BTNode>
+            {
+                new BTSequenceNode(new List<BTNode>
+                {
+                    new BTActionNode(new BlobWanderTargetAction(brain)),
+                    new BTActionNode(new BlobWanderAction(brain, _wanderTime))
+                }).Repeat(2),
+                new BTActionNode(new BlobIdleAction(brain))
+            });*/
         }
     }
 }

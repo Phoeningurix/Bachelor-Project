@@ -793,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: emotions.entries.Array.data[0].value.value
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[0].value.value
@@ -910,7 +910,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 10e2d9e98e32bea4d90d184b0e8fe74d, type: 2}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: emotions.entries.Array.data[0].value.value
-      value: -0.9
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
