@@ -88,12 +88,15 @@ MonoBehaviour:
     entries:
     - key: happiness
       value:
-        value: 0
+        value: 1
   personalityTraits:
     entries:
     - key: openness
       value:
-        value: 0.7
+        value: -0.9
+    - key: conscientiousness
+      value:
+        value: 0
 --- !u!1 &3018164175829585121
 GameObject:
   m_ObjectHideFlags: 0

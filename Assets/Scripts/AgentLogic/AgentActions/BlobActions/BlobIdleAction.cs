@@ -25,7 +25,7 @@ namespace AgentLogic.AgentActions.BlobActions
             
             _timeSinceStart += Time.fixedDeltaTime;
 
-            if (_timeSinceStart > _agent.Blackboard.Get<float>("wanderTime"))
+            if (_timeSinceStart > _agent.Blackboard.Get<float>("waitTime"))
             {
                 _isRunning = false;
                 return true;

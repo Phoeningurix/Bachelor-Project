@@ -19,9 +19,10 @@ namespace AgentLogic
 
         void Start()
         {
-            Blackboard.Set("wanderTime", 2f);
+            //Blackboard.Set("wanderTime", 2f);
             Blackboard.Set("waitTime", 2f);
             Blackboard.Set("wanderTarget", Vector3.zero);
+            Blackboard.Set("wanderSpeed", 1f);
         }
 
 
