@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AgentLogic.FSM
 {
-    public class StateMachine
+    public class StateMachine : IAgentBehavior
     {
         private IState _currentState;
         private Dictionary<Type, List<Transition>> _transitions = new Dictionary<Type, List<Transition>>();
