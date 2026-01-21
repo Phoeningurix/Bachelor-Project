@@ -771,6 +771,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmotionalBlob (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 

@@ -1,32 +1,42 @@
-﻿using AgentLogic.AgentActions.BlobActions;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AgentLogic.FSM
 {
     public class FSMWanderState : IState
     {
         private readonly BlobBrain _brain;
-        private BlobWanderAction _wanderAction;
 
         public FSMWanderState(BlobBrain brain)
         {
             _brain = brain;
-            _wanderAction = new BlobWanderAction(brain);
         }
         
         public void Tick()
         {
-            _wanderAction.Tick();
+            float happiness = Mathf.Clamp01(_brain.emotions["happiness"].Value);
+            float speed = _brain.Blackboard.Get<float>("wanderSpeed") * Mathf.Lerp(0.5f, 1.5f, happiness);
+            
+            Vector3 target = _brain.Blackboard.Get<Vector3>("wanderTarget");
+            
+            _brain.transform.position = Vector3.MoveTowards(_brain.transform.position,
+                target,
+                speed * _brain.DeltaTime()
+            );
         }
 
         public void OnEnter()
         {
+            float radius = Mathf.Lerp(1f, 3f, _brain.personalityTraits.GetBetween01("openness"));
             
+            Vector2 dir = Random.insideUnitCircle.normalized;
+            Vector3 target = _brain.transform.position + new Vector3(dir.x, dir.y, 0f) * radius;
+
+            _brain.Blackboard.Set("wanderTarget", target);
         }
 
         public void OnExit()
         {
-            _brain.Blackboard.Set("wanderTarget", Vector3.zero);
+            
         }
     }
 }

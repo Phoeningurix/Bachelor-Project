@@ -23,7 +23,7 @@ namespace AgentLogic.AgentActions.BlobActions
                 _isRunning = true;
             }
             
-            _timeSinceStart += Time.fixedDeltaTime;
+            _timeSinceStart += _agent.DeltaTime();
 
             if (_timeSinceStart > _agent.Blackboard.Get<float>("waitTime"))
             {

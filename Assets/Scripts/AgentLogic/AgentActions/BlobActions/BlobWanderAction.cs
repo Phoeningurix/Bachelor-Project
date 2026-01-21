@@ -18,7 +18,7 @@ namespace AgentLogic.AgentActions.BlobActions
         {
             //Debug.Log("Wander Time: " + _wanderTime);
             //Debug.Log("Wander Target: " + _agent.Blackboard.Get<Vector3>("wanderTarget"));
-            //_timeSinceStart += Time.fixedDeltaTime;
+            //_timeSinceStart += _agent.DeltaTime();
             /*_agent.transform.position = Vector3.Lerp
             (
                 _startPosition, _agent.Blackboard.Get<Vector3>("wanderTarget"),
@@ -39,7 +39,7 @@ namespace AgentLogic.AgentActions.BlobActions
             
             _agent.transform.position = Vector3.MoveTowards(_agent.transform.position,
                 target,
-                speed * Time.fixedDeltaTime
+                speed * _agent.DeltaTime()
             );
             if (Vector3.Distance(_agent.transform.position, target) < 0.01f)
             {

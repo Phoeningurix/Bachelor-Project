@@ -6,8 +6,10 @@ namespace AgentLogic.FSM
     public class FSMIdleState : IState
     {
         private readonly BlobBrain _brain;
-
-        private bool _isIdle;
+        private float _idleTimeSinceStart;
+        private float _waitTime;
+        
+        public bool IsIdle() => _idleTimeSinceStart <= _waitTime;
 
         public FSMIdleState(BlobBrain brain)
         {
@@ -16,25 +18,18 @@ namespace AgentLogic.FSM
         
         public void Tick()
         {
-            float timeSinceStart = _brain.Blackboard.Get<float>("idleTimeSinceStart");
-            _brain.Blackboard.Set("idleTimeSinceStart", timeSinceStart + Time.fixedDeltaTime);
-            
+            _idleTimeSinceStart += _brain.DeltaTime();
         }
-
-        public bool IsIdle()
-        {
-            return _isIdle;
-        }
+        
 
         public void OnEnter()
         {
-            _isIdle = true;
-            _brain.Blackboard.Set("idleTimeSinceStart", 0f);
+            _idleTimeSinceStart = 0f;
+            _waitTime = _brain.Blackboard.Get<float>("waitTime");
         }
 
         public void OnExit()
         {
-            _isIdle = false;
         }
     }
 }

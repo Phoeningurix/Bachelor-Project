@@ -13,6 +13,8 @@ namespace AgentLogic
         public ObservableFloatRegistry personalityTraits;
         private IAgentBehavior _agentBehavior;
         public readonly Blackboard Blackboard = new();
+        
+        
 
         private IAgentBehavior AgentBehavior => _agentBehavior ??= behaviorSupplier.GetAgentBehavior(this);
         
@@ -32,8 +34,9 @@ namespace AgentLogic
         // public float agreeableness = 0;
         // public float neuroticism = 0;
 
-        // Update is called once per frame
-        void FixedUpdate()
+        public float DeltaTime() => Time.deltaTime;
+        
+        void Update()
         {
             AgentBehavior.Tick();
         }

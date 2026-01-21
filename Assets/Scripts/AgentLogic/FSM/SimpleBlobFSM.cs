@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Utils;
 using Random = UnityEngine.Random;
 
 namespace AgentLogic.FSM
@@ -12,36 +14,38 @@ namespace AgentLogic.FSM
         {
             _stateMachine = new StateMachine();
             
-            var setWanderTarget = new FSMSetWanderTarget(brain);
             var wander = new FSMWanderState(brain);
             var idle = new FSMIdleState(brain);
-            var canWander = new FSMWanderConditionState(brain);
             
-            At(idle, setWanderTarget, WanderCondition());
+            At(idle, wander, CanWander() & IsNotIdle());
             At(idle, idle, IsNotIdle());
-            At(setWanderTarget, wander, HasWanderTarget());
-            At(wander, setWanderTarget, ContinueWanderCondition());
+            At(wander, wander, CanWander() & ReachedTarget());
             At(wander, idle, ReachedTarget());
+            
+            Ata(idle, SpacePressed());
             
             void At(IState from, IState to, Func<bool> condition) => 
                 _stateMachine.AddTransition(from, to, condition);
             
+            // Add any transition
+            void Ata(IState to, Func<bool> condition) => _stateMachine.AddAnyTransition(to, condition);
+            
             // States, die andere unterbrechen, können mit _stateMachine.AddAnyState(...) hinzugefügt werden
             
-            _stateMachine.SetState(setWanderTarget);
-
+            _stateMachine.SetState(CanWander() ? wander : idle);
+            
             // Conditions
-            Func<bool> IsNotIdle() => () =>
-                brain.Blackboard.Get<float>("idleTimeSinceStart") > brain.Blackboard.Get<float>("waitTime");
-            Func<bool> WanderCondition() => 
-                () => Random.value <= Mathf.Clamp01(brain.emotions["happiness"].Value / 2f + 0.5f) 
-                      && brain.Blackboard.Get<float>("idleTimeSinceStart") > brain.Blackboard.Get<float>("waitTime");
-            Func<bool> ContinueWanderCondition() => 
-                () => Random.value <= Mathf.Clamp01(brain.emotions["happiness"].Value / 2f + 0.5f) 
-                      && Vector3.Distance(brain.Blackboard.Get<Vector3>("wanderTarget"), brain.transform.position) < 0.01f;
-            Func<bool> HasWanderTarget() => () => brain.Blackboard.Get<Vector3>("wanderTarget") != Vector3.zero;
-            Func<bool> ReachedTarget() => () => 
-                Vector3.Distance(brain.Blackboard.Get<Vector3>("wanderTarget"), brain.transform.position) < 0.01f;
+            BoolPredicate IsNotIdle() => 
+                new(() => !idle.IsIdle());
+
+            BoolPredicate ReachedTarget() => new(() => 
+                Vector3.Distance(brain.Blackboard.Get<Vector3>("wanderTarget"), brain.transform.position) < 0.001f);
+
+            BoolPredicate CanWander() => new(() =>
+                Random.value <= brain.emotions.GetBetween01("happiness"));
+
+            BoolPredicate SpacePressed() => new(() => Keyboard.current.spaceKey.wasPressedThisFrame);
+            
         }
 
         public void Tick()

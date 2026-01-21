@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace AgentLogic.FSM
 {
@@ -15,6 +16,7 @@ namespace AgentLogic.FSM
 
         public void Tick()
         {
+            //Debug.Log("current state: " + _currentState.GetType().ToString());
             var transition = GetTransition();
             if (transition != null) SetState(transition.To);
             _currentState?.Tick();
@@ -36,7 +38,7 @@ namespace AgentLogic.FSM
 
         public void SetState(IState state)
         {
-            if (state == _currentState) return;
+            //if (state == _currentState) return;
             
             _currentState?.OnExit();
             _currentState = state;
