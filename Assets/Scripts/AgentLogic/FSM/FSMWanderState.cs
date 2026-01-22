@@ -13,7 +13,7 @@ namespace AgentLogic.FSM
         
         public void Tick()
         {
-            float happiness = Mathf.Clamp01(_brain.emotions["happiness"].Value);
+            float happiness = _brain.emotions.GetBetween01("happiness");
             float speed = _brain.Blackboard.Get<float>("wanderSpeed") * Mathf.Lerp(0.5f, 1.5f, happiness);
             
             Vector3 target = _brain.Blackboard.Get<Vector3>("wanderTarget");

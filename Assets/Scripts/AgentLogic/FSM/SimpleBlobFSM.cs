@@ -17,11 +17,13 @@ namespace AgentLogic.FSM
             var wander = new FSMWanderState(brain);
             var idle = new FSMIdleState(brain);
             
+            // Normale States
             At(idle, wander, CanWander() & IsNotIdle());
             At(idle, idle, IsNotIdle());
             At(wander, wander, CanWander() & ReachedTarget());
             At(wander, idle, ReachedTarget());
             
+            // Unterbrechende States
             Ata(idle, SpacePressed());
             
             void At(IState from, IState to, Func<bool> condition) => 
@@ -29,8 +31,6 @@ namespace AgentLogic.FSM
             
             // Add any transition
             void Ata(IState to, Func<bool> condition) => _stateMachine.AddAnyTransition(to, condition);
-            
-            // States, die andere unterbrechen, können mit _stateMachine.AddAnyState(...) hinzugefügt werden
             
             _stateMachine.SetState(CanWander() ? wander : idle);
             
