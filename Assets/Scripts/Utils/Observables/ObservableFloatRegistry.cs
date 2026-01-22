@@ -42,6 +42,8 @@ namespace Utils.Observables
             }
         }
 
+        public float GetBetween01(string key) => Mathf.Clamp01((this[key].Value + 1f) / 2f);
+
         public float GetMaxValue()
         {
             return _registry.Values.Max(v => v.Value);

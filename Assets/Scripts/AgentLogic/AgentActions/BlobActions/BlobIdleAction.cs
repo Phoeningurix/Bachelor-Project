@@ -1,4 +1,4 @@
-﻿using AgentLogic.BehaviorTree;
+﻿
 using UnityEngine;
 
 namespace AgentLogic.AgentActions.BlobActions
@@ -23,7 +23,7 @@ namespace AgentLogic.AgentActions.BlobActions
                 _isRunning = true;
             }
             
-            _timeSinceStart += Time.fixedDeltaTime;
+            _timeSinceStart += _agent.DeltaTime();
 
             if (_timeSinceStart > _agent.Blackboard.Get<float>("waitTime"))
             {
