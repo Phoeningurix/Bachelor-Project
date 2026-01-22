@@ -39,7 +39,7 @@ namespace AgentLogic.FSM
                 new(() => !idle.IsIdle());
 
             BoolPredicate ReachedTarget() => new(() => 
-                Vector3.Distance(brain.Blackboard.Get<Vector3>("wanderTarget"), brain.transform.position) < 0.001f);
+                brain.NavMeshAgent.enabled && !brain.NavMeshAgent.pathPending && brain.NavMeshAgent.remainingDistance <= brain.NavMeshAgent.stoppingDistance);
 
             BoolPredicate CanWander() => new(() =>
                 Random.value <= brain.emotions.GetBetween01("happiness"));
