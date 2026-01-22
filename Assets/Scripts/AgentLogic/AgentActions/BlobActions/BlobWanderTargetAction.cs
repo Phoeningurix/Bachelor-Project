@@ -13,7 +13,7 @@ namespace AgentLogic.AgentActions.BlobActions
 
         public override bool Tick()
         {
-            float openness = (_agent.personalityTraits["openness"].Value + 1f) / 2f;
+            float openness = _agent.personalityTraits.GetBetween01("openness");
             float radius = Mathf.Lerp(1f, 3f, openness);
             
 
