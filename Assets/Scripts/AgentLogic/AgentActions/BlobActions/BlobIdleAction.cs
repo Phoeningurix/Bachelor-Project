@@ -21,6 +21,7 @@ namespace AgentLogic.AgentActions.BlobActions
                 //Debug.Log("Blob is idle");
                 _timeSinceStart = 0f;
                 _isRunning = true;
+                // _agent.NavMeshAgent.SetDestination(_agent.transform.position);
             }
             
             _timeSinceStart += _agent.DeltaTime();
