@@ -25,7 +25,9 @@ namespace AgentLogic.AgentActions.BlobActions
                 speed * _agent.DeltaTime()
             );*/
             
-            if (Vector3.Distance(_agent.transform.position, _agent.NavMeshAgent.destination) < 0.01f)
+            if (_agent.NavMeshAgent.enabled 
+                && !_agent.NavMeshAgent.pathPending 
+                && _agent.NavMeshAgent.remainingDistance <= _agent.NavMeshAgent.stoppingDistance)
             {
                 _agent.NavMeshAgent.enabled = false;
                 return true;
