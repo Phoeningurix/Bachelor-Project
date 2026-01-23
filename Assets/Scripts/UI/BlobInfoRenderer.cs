@@ -63,8 +63,10 @@ namespace UI
         private void SetUIValues(BlobBrain brain)
         {
             _agentNameLabel.text = brain.name;
-            _happinessSlider.value = brain.emotions["happiness"].Value;
-            _opennessSlider.value = brain.personalityTraits["openness"].Value;
+            float happiness = brain.emotions["happiness"].Value;
+            _happinessSlider.value = happiness;
+            float openness = brain.personalityTraits["openness"].Value;
+            _opennessSlider.value = openness;
         }
     }
 }

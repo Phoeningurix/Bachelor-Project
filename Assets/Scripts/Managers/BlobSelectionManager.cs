@@ -51,7 +51,8 @@ namespace Managers
                     return;
                 }
             }
-            UnselectBlob();
+            // Wenn UnselectBlob() bei jedem Klick ausgeführt wird, können die Slider nicht mehr benutzt werden.
+            // UnselectBlob();
         }
         
         private void OnCancel(InputAction.CallbackContext context)
