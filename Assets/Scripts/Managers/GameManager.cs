@@ -20,7 +20,8 @@ namespace Managers
             DontDestroyOnLoad(gameObject);
             
             // Get other managers 
-            BlobSelectionManager = GetComponentInChildren<BlobSelectionManager>();
+            Instance.BlobSelectionManager = GetComponentInChildren<BlobSelectionManager>();
+            Debug.Log("Selection Manager: " + Instance.BlobSelectionManager);
         }
     }
 }

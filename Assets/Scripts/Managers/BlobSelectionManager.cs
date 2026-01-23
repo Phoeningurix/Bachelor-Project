@@ -63,14 +63,14 @@ namespace Managers
         {
             _currentBlob = blob;
             OnSelectionChanged?.Invoke(blob); 
-            Debug.Log($"Selected blob: {blob.name}");
+            //Debug.Log($"Selected blob: {blob.name}");
         }
 
         private void UnselectBlob()
         {
             _currentBlob = null;
             OnSelectionChanged?.Invoke(null);
-            Debug.Log("Unselected blob");
+            //Debug.Log("Unselected blob");
             
         }
 
