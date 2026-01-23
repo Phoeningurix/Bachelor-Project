@@ -17,7 +17,7 @@ namespace AgentLogic
         
 
         private IAgentBehavior AgentBehavior => _agentBehavior ??= behaviorSupplier.GetAgentBehavior(this);
-        
+        public string BehaviorType => _agentBehavior.GetType().Name;
 
         void Start()
         {
