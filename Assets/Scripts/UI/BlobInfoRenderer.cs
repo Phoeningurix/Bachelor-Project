@@ -12,6 +12,8 @@ namespace UI
         private Slider _happinessSlider;
         private Slider _opennessSlider;
 
+        private BlobBrain _currentBrain;
+
 
         private void Awake()
         {
@@ -38,6 +40,13 @@ namespace UI
 
         private void OnBlobChanged(BlobBrain brain)
         {
+            if (_currentBrain != null)
+            {
+                UnsubscribeFromAgent(_currentBrain);
+            }
+            
+            _currentBrain = brain;
+            
             Debug.Log("Blob Changed");
             if (brain == null)
             {
@@ -45,7 +54,8 @@ namespace UI
             }
             else
             {
-                SetUIValues(brain);
+                SetStaticUIValues(brain);
+                SubscribeToAgent(brain);
                 ShowUI();
             }
         }
@@ -60,12 +70,45 @@ namespace UI
             _root.style.display = DisplayStyle.None;
         }
 
-        private void SetUIValues(BlobBrain brain)
+        private void SetStaticUIValues(BlobBrain brain)
         {
             _agentNameLabel.text = brain.name;
             float happiness = brain.emotions["happiness"].Value;
             _happinessSlider.value = happiness;
             float openness = brain.personalityTraits["openness"].Value;
+            _opennessSlider.value = openness;
+        }
+
+        private void SubscribeToAgent(BlobBrain brain)
+        {
+            // Subcribe to emotions
+            brain.emotions["happiness"].OnChanged += OnHappinessChanged;
+            
+            // Subscribe to personality traits
+            brain.personalityTraits["openness"].OnChanged += OnOpennessChanged;
+            
+        }
+
+        private void UnsubscribeFromAgent(BlobBrain brain)
+        {
+            // Unsubcribe to emotions
+            brain.emotions["happiness"].OnChanged -= OnHappinessChanged;
+            
+            // Unsubscribe to personality traits
+            brain.personalityTraits["openness"].OnChanged -= OnOpennessChanged;
+        }
+        
+        
+        
+        // Event Methoden
+
+        private void OnHappinessChanged(float happiness)
+        {
+            _happinessSlider.value = happiness;
+        }
+
+        private void OnOpennessChanged(float openness)
+        {
             _opennessSlider.value = openness;
         }
     }
