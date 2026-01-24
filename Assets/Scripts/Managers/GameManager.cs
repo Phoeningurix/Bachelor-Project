@@ -1,16 +1,27 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Managers
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class GameManager : MonoBehaviour
     {
-        
-    }
+        public static GameManager Instance { get; private set; }
+        public BlobSelectionManager BlobSelectionManager { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                Debug.LogWarning("GameManager.Awake executed a second time!");
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            
+            // Get other managers 
+            Instance.BlobSelectionManager = GetComponentInChildren<BlobSelectionManager>();
+            Debug.Log("Selection Manager: " + Instance.BlobSelectionManager);
+        }
     }
 }

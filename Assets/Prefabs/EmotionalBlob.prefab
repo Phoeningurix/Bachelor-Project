@@ -42,7 +42,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2592210773534448529}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1.64, y: 2.3603091}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -227,3 +227,5 @@ MonoBehaviour:
   spriteHappyBlob: {fileID: 7745014671462289683, guid: d0ae8c6c87162bf429fd00fecbfa9e2b, type: 3}
   spriteNeutralBlob: {fileID: -2603582211881607076, guid: 9a5750f0e4e518041992e6a03bd67ed8, type: 3}
   spriteSadBlob: {fileID: 6888001387878516475, guid: c698bafe50bf6884b9dc7ab773bfdaaf, type: 3}
+  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: f87cbdf27bbf2fb4daaf351aa0e60220, type: 2}
