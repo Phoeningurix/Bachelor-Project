@@ -1312,6 +1312,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Size.x
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Size.y
+      value: 2.3603091
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2603582211881607076, guid: 9a5750f0e4e518041992e6a03bd67ed8, type: 3}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_Name
       value: EmotionalBlob (1)
@@ -1391,6 +1407,22 @@ PrefabInstance:
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Size.x
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Size.y
+      value: 2.3603091
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2603582211881607076, guid: 9a5750f0e4e518041992e6a03bd67ed8, type: 3}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_Name
@@ -1795,6 +1827,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Size.x
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Size.y
+      value: 2.3603091
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2603582211881607076, guid: 9a5750f0e4e518041992e6a03bd67ed8, type: 3}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_Name
       value: EmotionalBlob (2)
@@ -1885,6 +1933,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Size.x
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Size.y
+      value: 2.3603091
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2603582211881607076, guid: 9a5750f0e4e518041992e6a03bd67ed8, type: 3}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_DrawMode
       value: 0
       objectReference: {fileID: 0}
@@ -1893,9 +1953,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: f7337bcdcdb301f4f94f08a24d539453, type: 2}
+      objectReference: {fileID: 2100000, guid: f87cbdf27bbf2fb4daaf351aa0e60220, type: 2}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_Name
       value: EmotionalBlob
