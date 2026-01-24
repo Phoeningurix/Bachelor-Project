@@ -1,3 +1,4 @@
+using System;
 using AgentLogic.AgentBehaviorSuppliers;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,6 +15,12 @@ namespace AgentLogic
         private IAgentBehavior _agentBehavior;
         public readonly Blackboard Blackboard = new();
         [DoNotSerialize] public NavMeshAgent NavMeshAgent;
+
+        public event Action OnSelected;
+        public event Action OnUnselected;
+        
+        public void InvokeSelect() => OnSelected?.Invoke();
+        public void InvokeUnselect() => OnUnselected?.Invoke();
         
 
         private IAgentBehavior AgentBehavior => _agentBehavior ??= behaviorSupplier.GetAgentBehavior(this);

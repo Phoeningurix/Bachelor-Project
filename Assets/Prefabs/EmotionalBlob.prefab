@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd34b20d81dc414d9618cfd079964f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlobBrain
-  behaviorSupplier: {fileID: 11400000, guid: 10e2d9e98e32bea4d90d184b0e8fe74d, type: 2}
+  behaviorSupplier: {fileID: 11400000, guid: c6650b6533781fe45b2707a9fc8e237c, type: 2}
   emotions:
     entries:
     - key: happiness
@@ -227,3 +227,5 @@ MonoBehaviour:
   spriteHappyBlob: {fileID: 7745014671462289683, guid: d0ae8c6c87162bf429fd00fecbfa9e2b, type: 3}
   spriteNeutralBlob: {fileID: -2603582211881607076, guid: 9a5750f0e4e518041992e6a03bd67ed8, type: 3}
   spriteSadBlob: {fileID: 6888001387878516475, guid: c698bafe50bf6884b9dc7ab773bfdaaf, type: 3}
+  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: f87cbdf27bbf2fb4daaf351aa0e60220, type: 2}

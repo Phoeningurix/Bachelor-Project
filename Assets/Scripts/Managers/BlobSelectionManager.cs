@@ -60,15 +60,18 @@ namespace Managers
             UnselectBlob();
         }
 
-        private void SelectBlob(BlobBrain blob)
+        private void SelectBlob(BlobBrain brain)
         {
-            _currentBlob = blob;
-            OnSelectionChanged?.Invoke(blob); 
+            _currentBlob?.InvokeUnselect();
+            _currentBlob = brain;
+            _currentBlob?.InvokeSelect();
+            OnSelectionChanged?.Invoke(brain); 
             //Debug.Log($"Selected blob: {blob.name}");
         }
 
         private void UnselectBlob()
         {
+            _currentBlob?.InvokeUnselect();
             _currentBlob = null;
             OnSelectionChanged?.Invoke(null);
             //Debug.Log("Unselected blob");
