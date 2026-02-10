@@ -17,6 +17,7 @@ namespace Editor
             // 2. Find our properties
             SerializedProperty consumableProp = serializedObject.FindProperty("consumable");
             SerializedProperty usesLeftProp = serializedObject.FindProperty("usesLeft");
+            SerializedProperty interactionRadius = serializedObject.FindProperty("interactionRadius");
 
             // 3. Draw the 'consumable' toggle first
             EditorGUILayout.PropertyField(consumableProp);
@@ -25,10 +26,10 @@ namespace Editor
             if (consumableProp.boolValue)
             {
                 // Indent it slightly to show it's a child-setting of 'consumable'
-                EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(usesLeftProp);
-                EditorGUI.indentLevel--;
             }
+            
+            EditorGUILayout.PropertyField(interactionRadius);
 
             // 5. Apply the changes back to the actual script
             serializedObject.ApplyModifiedProperties();

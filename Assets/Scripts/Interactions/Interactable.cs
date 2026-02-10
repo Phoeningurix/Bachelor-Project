@@ -11,6 +11,8 @@ namespace Interactions
         
         private SpriteRenderer _renderer;
         private Collider2D _collider;
+        
+        public float interactionRadius = 0.5f;
 
         private void Awake()
         {

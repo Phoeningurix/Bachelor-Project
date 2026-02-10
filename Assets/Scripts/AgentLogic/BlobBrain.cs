@@ -45,6 +45,11 @@ namespace AgentLogic
             Blackboard.Set("waitTime", 2f);
             Blackboard.Set("wanderTarget", NavMeshAgent.destination);
             Blackboard.Set("wanderSpeed", 1f);
+            Blackboard.Set("targetObject", NavMeshAgent.destination);
+            float temp = Mathf.InverseLerp(-1f, 1f, personalityTraits["openness"].Value);
+            Blackboard.Set("objectVisibilityRadius", Mathf.Lerp(1f, 7f, temp));
+            Blackboard.Set("objectPickUpRadius", 0.5f);
+            Blackboard.Set("hasObject", false);
         }
 
         public float DeltaTime() => Time.deltaTime;
@@ -52,7 +57,7 @@ namespace AgentLogic
         void Update()
         {
             AgentBehavior.Tick();
-            if(Keyboard.current.fKey.wasPressedThisFrame) Temp();
+            //if(Keyboard.current.fKey.wasPressedThisFrame) Temp();
         }
 
         private void Temp()
