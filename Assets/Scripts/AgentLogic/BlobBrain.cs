@@ -1,12 +1,16 @@
 using System;
+using System.Collections.Generic;
 using AgentLogic.AgentBehaviorSuppliers;
+using Interactions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 using Utils.Observables;
 
 namespace AgentLogic
 {
+    [RequireComponent(typeof(InteractionLocator))]
     public class BlobBrain : MonoBehaviour
     {
         [SerializeField] private AgentBehaviorSupplier<BlobBrain> behaviorSupplier;
@@ -15,6 +19,8 @@ namespace AgentLogic
         private IAgentBehavior _agentBehavior;
         public readonly Blackboard Blackboard = new();
         [DoNotSerialize] public NavMeshAgent NavMeshAgent;
+        
+        [DoNotSerialize] public InteractionLocator interactionLocator;
 
         public event Action OnSelected;
         public event Action OnUnselected;
@@ -34,6 +40,8 @@ namespace AgentLogic
             NavMeshAgent.enabled = true;
             NavMeshAgent.SetDestination(transform.position);
             
+            interactionLocator = GetComponent<InteractionLocator>();
+            
             Blackboard.Set("waitTime", 2f);
             Blackboard.Set("wanderTarget", NavMeshAgent.destination);
             Blackboard.Set("wanderSpeed", 1f);
@@ -44,6 +52,27 @@ namespace AgentLogic
         void Update()
         {
             AgentBehavior.Tick();
+            if(Keyboard.current.fKey.wasPressedThisFrame) Temp();
         }
+
+        private void Temp()
+        {
+            List<Interactable> interactables = interactionLocator.FindInteractablesInRange(5);
+            if (interactables.Count > 0)
+            {
+                interactables[0].Invoke(this, () =>
+                    {
+                        emotions["happiness"].Value += 0.1f;
+                        Debug.Log("Interaction success");
+                    }, () =>
+                    {
+                        emotions["happiness"].Value -= 0.1f;
+                        Debug.Log("Interaction failure");
+                    });
+            }
+            
+
+        }
+        
     }
 }
