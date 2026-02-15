@@ -2,11 +2,11 @@
 
 namespace AgentLogic.AgentActions.BlobActions
 {
-    public class BlobWanderAction : AgentAction
+    public class BlobGoToTargetAction : AgentAction
     {
         private readonly BlobBrain _agent;
 
-        public BlobWanderAction(BlobBrain agent)
+        public BlobGoToTargetAction(BlobBrain agent)
         {
             _agent = agent;
         }

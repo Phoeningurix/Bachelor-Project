@@ -46,10 +46,11 @@ namespace AgentLogic
             Blackboard.Set("wanderTarget", NavMeshAgent.destination);
             Blackboard.Set("wanderSpeed", 1f);
             Blackboard.Set("targetObject", NavMeshAgent.destination);
-            float temp = Mathf.InverseLerp(-1f, 1f, personalityTraits["openness"].Value);
-            Blackboard.Set("objectVisibilityRadius", Mathf.Lerp(1f, 7f, temp));
-            Blackboard.Set("objectPickUpRadius", 0.5f);
+            // float temp = Mathf.InverseLerp(-1f, 1f, personalityTraits["openness"].Value);
+            Blackboard.Set("objectVisibilityRadius", Mathf.Lerp(1f, 7f, personalityTraits.GetBetween01("openness")));
+            Blackboard.Set("objectInteractionRadius", 0.5f);
             Blackboard.Set("hasObject", false);
+            Blackboard.Set("apples", 0);
         }
 
         public float DeltaTime() => Time.deltaTime;
@@ -78,6 +79,11 @@ namespace AgentLogic
             
 
         }
-        
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.orange;
+            Gizmos.DrawWireSphere(transform.position, Blackboard.Get<float>("objectVisibilityRadius"));
+        }
     }
 }

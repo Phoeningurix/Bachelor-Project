@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Interactions
 {
-    public class FlowerInteractable : Interactable
+    public class FlowerInteractable : InteractableWithWait
     {
         protected override bool GetInteractionStatus(BlobBrain brain)
         {

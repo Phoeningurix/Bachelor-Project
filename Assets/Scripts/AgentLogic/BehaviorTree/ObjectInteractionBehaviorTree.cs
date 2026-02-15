@@ -22,20 +22,29 @@ namespace AgentLogic.BehaviorTree
                         new BTConditionNode(() =>
                             {
                                 if (brain.Blackboard.Get<bool>("hasObject")) return false;
-                                float probability = 0.8f + 1f - Mathf.InverseLerp(-1f, 1f, 
+                                float probability = 0.5f + 1f - Mathf.InverseLerp(-1f, 1f, 
                                                         brain.emotions["happiness"].Value) * 0.5f
                                                     + Mathf.InverseLerp(-1f, 1f, 
                                                         brain.personalityTraits["openness"].Value) * 0.5f;
                                 return Random.value < Mathf.Clamp01(probability);
                             }),
                         new BTActionNode(new BlobSetTargetObjectAction(brain)),
-                        new BTActionNode(new BlobWanderAction(brain)), // Wander should work here
+                        new BTActionNode(new BlobGoToTargetAction(brain)), 
                         new BTConditionNode(() => Vector3.Distance(brain.transform.position, 
                                                       brain.Blackboard
                                                           .Get<Interactable>("targetObject").transform.position) 
                                                   <= brain.Blackboard
-                                                      .Get<float>("objectPickUpRadius")),
-                        new BTActionNode(new BlobPickUpObjectAction(brain)),
+                                                      .Get<float>("objectInteractionRadius")),
+                        new BTActionNode(new BlobInteractWithWaitAction(brain, () =>
+                        {
+                            brain.emotions["happiness"].Value += 0.1f;
+                            //_agent.Blackboard.Set("hasObject", true);
+                            Debug.Log("Picked up object");
+                        }, () =>
+                        {
+                            brain.emotions["happiness"].Value -= 0.1f;
+                            Debug.Log("Failed to pick up object");
+                        })),
                     }
                 ),
                 new BTSequenceNode(new List<BTNode>
@@ -43,7 +52,7 @@ namespace AgentLogic.BehaviorTree
                     new BTConditionNode(() => 
                         Random.value <= Mathf.Clamp01(brain.emotions["happiness"].Value / 2f + 0.5f)),
                     new BTActionNode(new BlobWanderTargetAction(brain)),
-                    new BTActionNode(new BlobWanderAction(brain)),
+                    new BTActionNode(new BlobGoToTargetAction(brain)),
                 }),
                 new BTActionNode(new BlobIdleAction(brain)),
             });

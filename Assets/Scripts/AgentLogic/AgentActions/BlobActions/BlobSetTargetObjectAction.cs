@@ -40,7 +40,7 @@ namespace AgentLogic.AgentActions.BlobActions
                 
                 _agent.NavMeshAgent.enabled = true;
                 _agent.NavMeshAgent.SetDestination(nearestObject.transform.position);
-                Debug.Log("New target object:" + _agent.NavMeshAgent.destination);
+                // Debug.Log("New target object:" + _agent.NavMeshAgent.destination);
             }
             
             return true;
