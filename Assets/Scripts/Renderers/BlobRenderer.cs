@@ -19,12 +19,15 @@ namespace Renderers
     
         private SpriteRenderer _spriteRenderer;
         
+        private SpriteRenderer _bodyRenderer;
+        
         private Vector3 _lastFramePosition;
     
         // Awake is called before Start
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _bodyRenderer = transform.Find("BlobBody").GetComponent<SpriteRenderer>();
             _brain = GetComponentInParent<BlobBrain>();
         }
 
@@ -56,7 +59,7 @@ namespace Renderers
         // Update is called once per frame
         void Update()
         {
-            if (_brain.emotions["happiness"].Value> 0)
+            if (_brain.emotions["happiness"].Value > 0)
             {
                 SetSprite(spriteHappyBlob);
             } else if (_brain.emotions["happiness"].Value < 0)
@@ -67,6 +70,9 @@ namespace Renderers
             {
                 SetSprite(spriteNeutralBlob);
             }
+            
+            _bodyRenderer.color = Color.Lerp(Color.deepSkyBlue, Color.greenYellow, 
+                _brain.emotions.GetBetween01("happiness"));
 
             if (_lastFramePosition.x < transform.parent.position.x)
             {
@@ -81,12 +87,12 @@ namespace Renderers
         
         private void OnSelected()
         {
-            _spriteRenderer.material = highlightMaterial;
+            _bodyRenderer.material = highlightMaterial;
         }
 
         private void OnUnselected()
         {
-            _spriteRenderer.material = defaultMaterial;
+            _bodyRenderer.material = defaultMaterial;
         }
         
     }

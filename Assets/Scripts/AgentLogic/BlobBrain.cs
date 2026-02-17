@@ -68,11 +68,11 @@ namespace AgentLogic
             {
                 interactables[0].Invoke(this, () =>
                     {
-                        emotions["happiness"].Value += 0.1f;
+                        ModifyEmotion("happiness", 0.1f);
                         Debug.Log("Interaction success");
                     }, () =>
                     {
-                        emotions["happiness"].Value -= 0.1f;
+                        ModifyEmotion("happiness", -0.1f);
                         Debug.Log("Interaction failure");
                     });
             }
@@ -85,5 +85,17 @@ namespace AgentLogic
             Gizmos.color = Color.orange;
             Gizmos.DrawWireSphere(transform.position, Blackboard.Get<float>("objectVisibilityRadius"));
         }
+        
+        
+        public void ModifyEmotion(string emotion, float value)
+        {
+            float factor = 1f + personalityTraits["neuroticism"].Value;
+
+            float scaledDelta = value * factor;
+
+            float newValue = emotions[emotion].Value + scaledDelta;
+            emotions[emotion].Value = Mathf.Clamp(newValue, -1f, 1f);
+        }
+
     }
 }

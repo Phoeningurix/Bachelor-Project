@@ -22,7 +22,7 @@ namespace AgentLogic.BehaviorTree
                         new BTConditionNode(() =>
                             {
                                 if (brain.Blackboard.Get<bool>("hasObject")) return false;
-                                float probability = 0.5f + 1f - Mathf.InverseLerp(-1f, 1f, 
+                                float probability = 0.5f - Mathf.InverseLerp(-1f, 1f, 
                                                         brain.emotions["happiness"].Value) * 0.5f
                                                     + Mathf.InverseLerp(-1f, 1f, 
                                                         brain.personalityTraits["openness"].Value) * 0.5f;
@@ -37,12 +37,12 @@ namespace AgentLogic.BehaviorTree
                                                       .Get<float>("objectInteractionRadius")),
                         new BTActionNode(new BlobInteractWithWaitAction(brain, () =>
                         {
-                            brain.emotions["happiness"].Value += 0.1f;
+                            brain.ModifyEmotion("happiness", 0.1f);
                             //_agent.Blackboard.Set("hasObject", true);
                             Debug.Log("Picked up object");
                         }, () =>
                         {
-                            brain.emotions["happiness"].Value -= 0.1f;
+                           brain.ModifyEmotion("happiness", -0.1f);
                             Debug.Log("Failed to pick up object");
                         })),
                     }

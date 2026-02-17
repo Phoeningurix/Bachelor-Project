@@ -129,7 +129,11 @@ namespace UI
         
         private void OnOpennessSliderValueChanged(ChangeEvent<float> e)
         {
-            if (_currentBrain != null) _currentBrain.personalityTraits["openness"].Value = e.newValue;
+            if (_currentBrain != null)
+            {
+                _currentBrain.personalityTraits["openness"].Value = e.newValue;
+                _currentBrain.Blackboard.Set("objectVisibilityRadius", Mathf.Lerp(1f, 7f, e.newValue));
+            }
         }
     }
 }
