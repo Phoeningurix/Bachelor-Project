@@ -22,11 +22,10 @@ namespace AgentLogic.BehaviorTree
                         new BTConditionNode(() =>
                             {
                                 if (brain.Blackboard.Get<bool>("hasObject")) return false;
-                                float probability = 0.5f - Mathf.InverseLerp(-1f, 1f, 
-                                                        brain.emotions["happiness"].Value) * 0.5f
-                                                    + Mathf.InverseLerp(-1f, 1f, 
-                                                        brain.personalityTraits["openness"].Value) * 0.5f;
-                                return Random.value < Mathf.Clamp01(probability);
+                                float probability = 0.3f - brain.emotions["happiness"].Value * 0.5f
+                                                    + brain.personalityTraits["openness"].Value * 0.5f;
+                                float r = Random.value;
+                                return r < Mathf.Clamp01(probability);
                             }),
                         new BTActionNode(new BlobSetTargetObjectAction(brain)),
                         new BTActionNode(new BlobGoToTargetAction(brain)), 

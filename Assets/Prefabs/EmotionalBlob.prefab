@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6578528057977639425}
   - component: {fileID: 4937883496564065650}
   - component: {fileID: 1208421910763956310}
-  - component: {fileID: 4875879005713311650}
   - component: {fileID: 248452689809197531}
+  - component: {fileID: 5659846376262025905}
   m_Layer: 6
   m_Name: EmotionalBlob
   m_TagString: Untagged
@@ -91,15 +91,15 @@ MonoBehaviour:
     entries:
     - key: happiness
       value:
-        value: 1
+        value: 0
   personalityTraits:
     entries:
     - key: openness
       value:
-        value: -0.6
+        value: 0.7
     - key: conscientiousness
       value:
-        value: -0.5
+        value: 0
     - key: neuroticism
       value:
         value: 1
@@ -117,7 +117,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db97793762034e41ab6f20ad8e9422a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AgentLogic.InteractionLocator
---- !u!195 &4875879005713311650
+--- !u!210 &248452689809197531
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592210773534448529}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+--- !u!195 &5659846376262025905
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,18 +151,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
---- !u!210 &248452689809197531
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2592210773534448529}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
 --- !u!1 &3018164175829585121
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f87cbdf27bbf2fb4daaf351aa0e60220, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,7 +234,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2603582211881607076, guid: 9a5750f0e4e518041992e6a03bd67ed8, type: 3}
+  m_Sprite: {fileID: -3710727647167288164, guid: e47c13c53ceeb7147b5e1864d5a55ea7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -262,6 +262,36 @@ MonoBehaviour:
   spriteSadBlob: {fileID: 9218567688946904228, guid: bdc97b325d65a0444ae7d45421140e37, type: 3}
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   highlightMaterial: {fileID: 2100000, guid: f87cbdf27bbf2fb4daaf351aa0e60220, type: 2}
+  emotionGradient:
+    serializedVersion: 2
+    key0: {r: 0.5106077, g: 0.30588233, b: 1, a: 1}
+    key1: {r: 0.27735847, g: 0.38119355, b: 1, a: 1}
+    key2: {r: 0, g: 0.99405575, b: 1, a: 0}
+    key3: {r: 0.2471698, g: 1, b: 0.59462994, a: 0}
+    key4: {r: 0.5696988, g: 1, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 540
+    ctime1: 15189
+    ctime2: 34001
+    ctime3: 49730
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 2
+    m_ColorSpace: -1
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
 --- !u!1 &5545336673775368471
 GameObject:
   m_ObjectHideFlags: 0

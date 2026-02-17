@@ -14,6 +14,8 @@ namespace Renderers
         [Header("Materials")]
         public Material defaultMaterial;
         public Material highlightMaterial;
+        
+        [SerializeField] private Gradient emotionGradient;
 
         private BlobBrain _brain;
     
@@ -71,8 +73,7 @@ namespace Renderers
                 SetSprite(spriteNeutralBlob);
             }
             
-            _bodyRenderer.color = Color.Lerp(Color.deepSkyBlue, Color.greenYellow, 
-                _brain.emotions.GetBetween01("happiness"));
+            UpdateColorGradient();
 
             if (_lastFramePosition.x < transform.parent.position.x)
             {
@@ -93,6 +94,18 @@ namespace Renderers
         private void OnUnselected()
         {
             _bodyRenderer.material = defaultMaterial;
+        }
+        
+        public void UpdateColorSimple()
+        {
+            _bodyRenderer.color = Color.Lerp(Color.deepSkyBlue, Color.greenYellow, 
+                _brain.emotions.GetBetween01("happiness"));
+        }
+        
+        public void UpdateColorGradient()
+        {
+            float t = Mathf.Lerp(0, 1f, _brain.emotions.GetBetween01("happiness"));
+            _bodyRenderer.color = emotionGradient.Evaluate(t);
         }
         
     }
