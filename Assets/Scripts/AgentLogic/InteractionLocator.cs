@@ -26,5 +26,7 @@ namespace AgentLogic
 
             return foundInteractables;
         }
+        
+        //TODO: Methode um Blobs zu finden FindBlobsInRange(...)
     }
 }

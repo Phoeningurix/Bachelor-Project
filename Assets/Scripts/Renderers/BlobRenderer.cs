@@ -104,7 +104,7 @@ namespace Renderers
         
         public void UpdateColorGradient()
         {
-            float t = Mathf.Lerp(0, 1f, _brain.emotions.GetBetween01("happiness"));
+            float t = _brain.emotions.GetBetween01("happiness");
             _bodyRenderer.color = emotionGradient.Evaluate(t);
         }
         

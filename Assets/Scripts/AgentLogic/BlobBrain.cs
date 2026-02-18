@@ -89,7 +89,7 @@ namespace AgentLogic
         
         public void ModifyEmotion(string emotion, float value)
         {
-            float factor = 1f + personalityTraits["neuroticism"].Value;
+            float factor = Mathf.Lerp(0.1f, 2f, personalityTraits.GetBetween01("neuroticism"));
 
             float scaledDelta = value * factor;
 

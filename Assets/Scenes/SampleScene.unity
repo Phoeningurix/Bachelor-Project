@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 248452689809197531, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.295
@@ -212,6 +216,7 @@ GameObject:
   - component: {fileID: 86171090}
   - component: {fileID: 86171089}
   - component: {fileID: 86171088}
+  - component: {fileID: 86171091}
   m_Layer: 0
   m_Name: AppleTree
   m_TagString: Untagged
@@ -346,7 +351,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.1778729, y: -1.5232775}
+  m_Offset: {x: 0.1778729, y: -0.22434187}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -356,8 +361,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.42915106, y: 0.43539238}
+  m_Size: {x: 0.42915106, y: 0.48566246}
   m_EdgeRadius: 0
+--- !u!210 &86171091
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86171086}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &327617274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,7 +1549,6 @@ MonoBehaviour:
   consumable: 1
   usesLeft: 1
   interactionRadius: 0.5
-  interactionDelay: 2
 --- !u!212 &978526467
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1731,6 +1747,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 248452689809197531, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.455839
@@ -1917,7 +1937,6 @@ MonoBehaviour:
   consumable: 1
   usesLeft: 1
   interactionRadius: 0.5
-  interactionDelay: 2
 --- !u!212 &1389842217
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2035,6 +2054,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 248452689809197531, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.59
@@ -2561,6 +2584,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 248452689809197531, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.68
@@ -2818,7 +2845,6 @@ MonoBehaviour:
   consumable: 1
   usesLeft: 1
   interactionRadius: 0.5
-  interactionDelay: 2
 --- !u!212 &2104667143
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2900,6 +2926,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 248452689809197531, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.92449

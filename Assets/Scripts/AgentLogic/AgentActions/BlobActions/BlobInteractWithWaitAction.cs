@@ -26,6 +26,7 @@ namespace AgentLogic.AgentActions.BlobActions
         {
             if (!_hasInvoked)
             {
+                _interactionFinished = false;
                 _targetObject = _agent.Blackboard.Get<Interactable>("targetObject");
                 _targetObject.Invoke(_agent, () =>
                 {
@@ -37,7 +38,6 @@ namespace AgentLogic.AgentActions.BlobActions
                     _interactionFinished = true;
                 });
                 _hasInvoked = true;
-                _interactionFinished = false;
             }
 
             if (_interactionFinished)
