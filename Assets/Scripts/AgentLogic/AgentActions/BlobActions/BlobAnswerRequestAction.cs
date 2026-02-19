@@ -80,7 +80,7 @@ namespace AgentLogic.AgentActions.BlobActions
                     break;
                 case BlobInteractionType.Gift:
                     _agent.ModifyEmotion("happiness", 0.4f);
-                    _agent.Blackboard.Set("flowers", _agent.Blackboard.Get<float>("flowers") + 1);
+                    _agent.Blackboard.Set("flowers", _agent.Blackboard.Get<int>("flowers") + 1);
                     break;
                 case BlobInteractionType.Scream:
                     _agent.ModifyEmotion("happiness", -0.2f);

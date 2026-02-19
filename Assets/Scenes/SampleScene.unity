@@ -133,11 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.295
+      value: -3.73
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.272
+      value: -1.95
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -197,10 +197,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[0].value.value
-      value: 0.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[1].value.value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[2].value.value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[3].value.value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[4].value.value
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1797,12 +1809,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
       objectReference: {fileID: 11400000, guid: fea4e5ae276d87341a07ee4738bb1396, type: 2}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[0].value.value
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[2].value.value
+      value: -0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[3].value.value
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[4].value.value
+      value: -0.94
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2132,7 +2160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4370962440951494828, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_ObstacleAvoidanceType
@@ -2153,6 +2181,10 @@ PrefabInstance:
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[1].value.value
       value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[2].value.value
+      value: -0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2598,11 +2630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.68
+      value: 5.42
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.99
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2697,12 +2729,16 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[2].value.value
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[3].value.value
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[4].value.value
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2952,11 +2988,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.92449
+      value: -1.94
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.50378
+      value: 1.81
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2996,12 +3032,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
       objectReference: {fileID: 11400000, guid: fea4e5ae276d87341a07ee4738bb1396, type: 2}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[0].value.value
+      value: -0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[2].value.value
+      value: 0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[3].value.value
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: personalityTraits.entries.Array.data[4].value.value
+      value: 0.82
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
