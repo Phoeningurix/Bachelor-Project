@@ -92,23 +92,29 @@ MonoBehaviour:
     - key: happiness
       value:
         value: 0
+    - key: fear
+      value:
+        value: 0
+    - key: anger
+      value:
+        value: 0
   personalityTraits:
     entries:
     - key: openness
       value:
-        value: 0.7
+        value: -0.6
     - key: conscientiousness
       value:
-        value: 0
+        value: 0.3
     - key: extraversion
       value:
-        value: 0
+        value: 0.7
     - key: agreeableness
       value:
-        value: 0
+        value: -0.1
     - key: neuroticism
       value:
-        value: 0
+        value: 0.5
   NavMeshAgent: {fileID: 0}
   interactionLocator: {fileID: 0}
 --- !u!114 &1208421910763956310

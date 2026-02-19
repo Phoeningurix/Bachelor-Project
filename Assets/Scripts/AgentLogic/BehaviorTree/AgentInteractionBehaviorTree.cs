@@ -44,8 +44,9 @@ namespace AgentLogic.BehaviorTree
                                 .Blackboard.Get<float>("agentInteractionRadius")).Count > 0),
                     new BTConditionNode(() =>
                     {
-                        float probability = 0.3f + brain.emotions["happiness"].Value * 0.2f
-                                            + brain.personalityTraits["extraversion"].Value * 0.5f;
+                        float probability = 0.3f + brain.emotions["happiness"].Value * 0.1f
+                                            + brain.personalityTraits["extraversion"].Value * 0.4f
+                                            - brain.emotions["fear"].Value * 0.2f;
                         float r = Random.value;
                         return r < Mathf.Clamp01(probability);
                     }),
