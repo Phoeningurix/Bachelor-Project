@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AgentLogic.AgentActions.BlobActions;
 using Interactions;
+using Interactions.BlobInteractions;
 using UnityEngine;
 
 namespace AgentLogic.BehaviorTree
@@ -11,6 +12,30 @@ namespace AgentLogic.BehaviorTree
         {
             Root = new BTSelectorNode(new List<BTNode>
             { //TODO als erstes prüfen ob es Requests gibt.
+                new BTSequenceNode(new List<BTNode>
+                {
+                    new BTConditionNode(() => brain.InteractionRequests.Count > 0),
+                    new BTSelectorNode(new List<BTNode>
+                    {
+                        new BTSequenceNode(new List<BTNode>
+                        {
+                            new BTConditionNode(() => Time.time - brain.InteractionRequests[0].TimeStamp 
+                                                      > brain.Blackboard.Get<float>("agentInteractionWaitTime")),
+                            new BTActionNode(new BlobOneTickAction(brain, b =>
+                            {
+                                b.InteractionRequests.RemoveAt(0);
+                            })),
+                        }),
+                        new BTSequenceNode(new List<BTNode>
+                        {
+                            new BTActionNode(new BlobAnswerRequestAction(brain)),
+                            new BTActionNode(new BlobOneTickAction(brain, b =>
+                            {
+                                b.InteractionRequests.RemoveAt(0);
+                            })),
+                        })
+                    }),
+                }),
                 new BTSequenceNode(new List<BTNode> // Interact with other agents
                 {
                     new BTConditionNode(() => brain.interactionLocator
@@ -24,7 +49,29 @@ namespace AgentLogic.BehaviorTree
                         float r = Random.value;
                         return r < Mathf.Clamp01(probability);
                     }),
-                    new BTActionNode(new BlobAgentInteractionAction(brain))
+                    // new BTActionNode(new BlobAgentInteractionAction(brain)),
+                    new BTWeightedRandomSelectorNode(new List<BTWeightedNode>
+                    {
+                        // pretend these are different actions / different interactions
+                        new BTWeightedActionNode(new BlobGreetingInteractionAction(brain), 
+                            () => brain.emotions.GetBetween01("happiness") * 0.2f 
+                                + brain.personalityTraits.GetBetween01("extraversion") * 0.2f 
+                                - brain.emotions.GetBetween01("fear") * 0.1f),
+                        new BTWeightedActionNode(new BlobInteractionRequestAction(
+                                brain, 
+                                BlobInteractionType.Insult), 
+                            () => 0.2f + brain.emotions.GetBetween01("happiness") * 0.3f 
+                                  - brain.emotions.GetBetween01("fear") * 0.2f),
+                        new BTWeightedActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Scream)),  // no weight = 0f always
+                        new BTWeightedSequenceNode(
+                            () => brain.emotions.GetBetween01("happiness") * 0.2f 
+                                  + brain.personalityTraits.GetBetween01("extraversion") * 0.2f 
+                                  - brain.emotions.GetBetween01("fear") * 0.1f, new List<BTNode>
+                            {
+                                new BTConditionNode(() => brain.Blackboard.Get<int>("flowers") > 0),
+                                new BTActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Gift))
+                            })
+                    })
                 }),
                 new BTSequenceNode(new List<BTNode> // Interact with Objects
                     {
