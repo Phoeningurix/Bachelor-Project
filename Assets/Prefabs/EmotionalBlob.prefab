@@ -100,9 +100,15 @@ MonoBehaviour:
     - key: conscientiousness
       value:
         value: 0
+    - key: extraversion
+      value:
+        value: 0
+    - key: agreeableness
+      value:
+        value: 0
     - key: neuroticism
       value:
-        value: 1
+        value: 0
   NavMeshAgent: {fileID: 0}
   interactionLocator: {fileID: 0}
 --- !u!114 &1208421910763956310

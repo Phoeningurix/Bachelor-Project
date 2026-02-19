@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AgentLogic.AgentBehaviorSuppliers;
 using Interactions;
+using Interactions.BlobInteractions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,6 +20,7 @@ namespace AgentLogic
         private IAgentBehavior _agentBehavior;
         public readonly Blackboard Blackboard = new();
         [DoNotSerialize] public NavMeshAgent NavMeshAgent;
+        public List<BlobInteraction> InteractionRequests; 
         
         [DoNotSerialize] public InteractionLocator interactionLocator;
 
@@ -51,6 +53,8 @@ namespace AgentLogic
             Blackboard.Set("objectInteractionRadius", 0.5f);
             Blackboard.Set("hasObject", false);
             Blackboard.Set("apples", 0);
+            Blackboard.Set("flowers", 0);
+            Blackboard.Set("agentInteractionRadius", 1f);
         }
 
         public float DeltaTime() => Time.deltaTime;
@@ -95,6 +99,31 @@ namespace AgentLogic
 
             float newValue = emotions[emotion].Value + scaledDelta;
             emotions[emotion].Value = Mathf.Clamp(newValue, -1f, 1f);
+        }
+
+        private void Greet(BlobBrain other)
+        {
+            BlobInteraction request = new BlobInteraction(this, other,
+                BlobInteractionType.Greeting, response =>
+                {
+                    switch (response)
+                    {
+                        case BlobInteractionResponseType.Wave:
+                            Debug.Log("Greet success");
+                            ModifyEmotion("happiness", 0.1f);
+                            break;
+                        default:
+                            Debug.Log("Greet failure");
+                            ModifyEmotion("happiness", -0.1f);
+                            break;
+                    }
+                });
+            other.RequestInteraction(request);
+        }
+        
+        public void RequestInteraction(BlobInteraction interaction)
+        {
+            InteractionRequests.Add(interaction);
         }
 
     }

@@ -12,7 +12,7 @@ namespace Interactions
 
         protected override void OnSuccess(BlobBrain brain)
         {
-            brain.Blackboard.Set("flowers", 1);
+            brain.Blackboard.Set("flowers", brain.Blackboard.Get<int>("flowers") + 1);
         }
     }
 }
