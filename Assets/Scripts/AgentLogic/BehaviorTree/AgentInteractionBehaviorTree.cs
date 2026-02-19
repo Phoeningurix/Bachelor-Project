@@ -54,7 +54,7 @@ namespace AgentLogic.BehaviorTree
                     new BTWeightedRandomSelectorNode(new List<BTWeightedNode>
                     {
                         // pretend these are different actions / different interactions
-                        new BTWeightedActionNode(new BlobGreetingInteractionAction(brain), 
+                        new BTWeightedActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Greeting), 
                             () => brain.emotions.GetBetween01("happiness") * 0.2f 
                                 + brain.personalityTraits.GetBetween01("extraversion") * 0.2f 
                                 - brain.emotions.GetBetween01("fear") * 0.1f),

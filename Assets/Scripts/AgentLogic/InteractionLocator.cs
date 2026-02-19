@@ -34,7 +34,6 @@ namespace AgentLogic
 
         public List<BlobBrain> FindBlobBrainsInRange(float radius)
         {
-            
             List<BlobBrain> foundBlobBrains = new List<BlobBrain>();
             
             int numFound = Physics2D.OverlapCircle(
@@ -44,17 +43,23 @@ namespace AgentLogic
                 _results
             ); 
             
+            //Debug.Log("numFound: " + numFound);
+            
             //Collider2D[] results = Physics2D.OverlapCircleAll(transform.position, radius);
             
             for (int i = 0; i < numFound; i++)
             {
                 if (_results[i].gameObject == gameObject) continue;
                 
+                //Debug.Log(_results[i].name);
+                
                 if (_results[i].TryGetComponent(out BlobBrain brain))
                 {
                     foundBlobBrains.Add(brain);
                 }
             }
+            
+            //Debug.Log("foundBlobBrains: " + foundBlobBrains.Count);
             
             return foundBlobBrains;
         }
@@ -64,7 +69,7 @@ namespace AgentLogic
             Gizmos.color = Color.green;
             foreach (var result in _results)
             {
-                Gizmos.DrawWireSphere(result.transform.position, 2);
+                if (result != null) Gizmos.DrawWireSphere(result.transform.position, 2);
             }
         }
     }

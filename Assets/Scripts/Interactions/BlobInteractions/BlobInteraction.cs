@@ -1,5 +1,6 @@
 ﻿using System;
 using AgentLogic;
+using UnityEngine;
 
 namespace Interactions.BlobInteractions
 {
@@ -20,11 +21,13 @@ namespace Interactions.BlobInteractions
             Message = message;
             OnResponse = onResponse;
             TimeStamp = UnityEngine.Time.time;
+            Debug.Log(Initiator.name + " is sending a Message \"" + message.ToString() + "\" to " + Reactor.name + ".");
         }
         
         public void InvokeReact(BlobInteractionResponseType responseType)
         {
             OnResponse?.Invoke(responseType); 
+            Debug.Log(Reactor.name + " is responding \"" + responseType.ToString() + "\" to " + Initiator.name + ".");
         }
     }
 }

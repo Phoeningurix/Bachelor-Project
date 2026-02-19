@@ -49,8 +49,8 @@ namespace UI
         
         private void OnEnable()
         {
-            Debug.Log("Game Manager: " + GameManager.Instance);
-            Debug.Log("Game Manager: " + GameManager.Instance.BlobSelectionManager);
+            //Debug.Log("Game Manager: " + GameManager.Instance);
+            //Debug.Log("Game Manager: " + GameManager.Instance.BlobSelectionManager);
             GameManager.Instance.BlobSelectionManager.OnSelectionChanged += OnBlobChanged;
             
             _happinessSlider.RegisterValueChangedCallback(OnHappinessSliderValueChanged);
@@ -88,7 +88,7 @@ namespace UI
             
             _currentBrain = brain;
             
-            Debug.Log("Blob Changed");
+            //Debug.Log("Blob Changed");
             if (brain == null)
             {
                 HideUI();

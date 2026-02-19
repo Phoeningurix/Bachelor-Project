@@ -41,7 +41,9 @@ namespace AgentLogic.AgentActions.BlobActions
         {
             if (_timeSinceStart > _waitTime || _hasReceivedResponse)
             {
+                _timeSinceStart = 0f;
                 _hasSentRequest = false;
+                _hasReceivedResponse = false;
                 return true;
             }
 
@@ -52,7 +54,12 @@ namespace AgentLogic.AgentActions.BlobActions
                         .Blackboard.Get<float>("agentInteractionRadius"));
 
                 // Die Action failt, wenn keine Agents mehr in der Nähe sind
-                if (otherAgents.Count == 0) throw new Exception("No agents found");
+                if (otherAgents.Count == 0)
+                {
+                    _timeSinceStart = 0f;
+                    Debug.LogError($"No agents found in {_agent.name}");
+                    throw new Exception("No agents found");
+                }
 
                 ListUtils.ShuffleInPlace(otherAgents);
                 BlobBrain interactionReceiver = otherAgents[0]; //TODO: Oder auf eine andere Art entscheiden

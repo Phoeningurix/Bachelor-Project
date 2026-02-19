@@ -20,7 +20,7 @@ namespace AgentLogic
         private IAgentBehavior _agentBehavior;
         public readonly Blackboard Blackboard = new();
         [DoNotSerialize] public NavMeshAgent NavMeshAgent;
-        public List<BlobInteraction> InteractionRequests; 
+        public readonly List<BlobInteraction> InteractionRequests = new List<BlobInteraction>(); 
         
         [DoNotSerialize] public InteractionLocator interactionLocator;
 
@@ -54,7 +54,7 @@ namespace AgentLogic
             Blackboard.Set("hasObject", false);
             Blackboard.Set("apples", 0);
             Blackboard.Set("flowers", 0);
-            Blackboard.Set("agentInteractionRadius", 1f);
+            Blackboard.Set("agentInteractionRadius", 4f);
             Blackboard.Set("agentInteractionWaitTime", 3f);
         }
 

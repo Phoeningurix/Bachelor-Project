@@ -19,9 +19,9 @@ namespace AgentLogic.BehaviorTree
             {
                 return _action.Tick() ? BTNode.NodeState.Success : BTNode.NodeState.Running;
             }
-            catch
+            catch (Exception e)
             {
-                Debug.LogWarning($"Failed ticking action '{_action}'.");
+                Debug.LogWarning($"Failed weighted ticking action '{_action}'. Message: {e.StackTrace}");
                 return BTNode.NodeState.Failure;
             }
         }}
