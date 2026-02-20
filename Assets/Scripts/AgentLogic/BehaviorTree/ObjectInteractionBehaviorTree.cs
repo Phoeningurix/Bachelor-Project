@@ -38,11 +38,11 @@ namespace AgentLogic.BehaviorTree
                         {
                             brain.ModifyEmotion("happiness", 0.1f);
                             //_agent.Blackboard.Set("hasObject", true);
-                            Debug.Log("Picked up object");
+                            //Debug.Log("Picked up object");
                         }, () =>
                         {
                            brain.ModifyEmotion("happiness", -0.1f);
-                            Debug.Log("Failed to pick up object");
+                            //Debug.Log("Failed to pick up object");
                         })),
                     }
                 ),

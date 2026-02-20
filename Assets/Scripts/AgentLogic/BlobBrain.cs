@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AgentLogic.AgentBehaviorSuppliers;
 using Interactions;
 using Interactions.BlobInteractions;
+using Renderers;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,6 +22,7 @@ namespace AgentLogic
         public readonly Blackboard Blackboard = new();
         [DoNotSerialize] public NavMeshAgent NavMeshAgent;
         public readonly List<BlobInteraction> InteractionRequests = new List<BlobInteraction>(); 
+        public SpeechBubbleRenderer speechBubble;
         
         [DoNotSerialize] public InteractionLocator interactionLocator;
 
@@ -43,6 +45,7 @@ namespace AgentLogic
             NavMeshAgent.SetDestination(transform.position);
             
             interactionLocator = GetComponent<InteractionLocator>();
+            //speechBubble = GetComponent<SpeechBubbleRenderer>();
             
             Blackboard.Set("waitTime", 2f);
             Blackboard.Set("wanderTarget", NavMeshAgent.destination);
@@ -55,7 +58,8 @@ namespace AgentLogic
             Blackboard.Set("apples", 0);
             Blackboard.Set("flowers", 0);
             Blackboard.Set("agentInteractionRadius", 4f);
-            Blackboard.Set("agentInteractionWaitTime", 3f);
+            Blackboard.Set("agentInteractionWaitTime", 20f);
+            Blackboard.Set("agentResponseWaitTime", 3f);
         }
 
         public float DeltaTime() => Time.deltaTime;
@@ -100,26 +104,6 @@ namespace AgentLogic
 
             float newValue = emotions[emotion].Value + scaledDelta;
             emotions[emotion].Value = Mathf.Clamp(newValue, -1f, 1f);
-        }
-
-        private void Greet(BlobBrain other)
-        {
-            BlobInteraction request = new BlobInteraction(this, other,
-                BlobInteractionType.Greeting, response =>
-                {
-                    switch (response)
-                    {
-                        case BlobInteractionResponseType.Wave:
-                            Debug.Log("Greet success");
-                            ModifyEmotion("happiness", 0.1f);
-                            break;
-                        default:
-                            Debug.Log("Greet failure");
-                            ModifyEmotion("happiness", -0.1f);
-                            break;
-                    }
-                });
-            other.RequestInteraction(request);
         }
         
         public void RequestInteraction(BlobInteraction interaction)

@@ -48,7 +48,7 @@ namespace Renderers
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            Debug.Log("Blob can now experience emotions");
+            Debug.Log(_brain.name + " can now experience emotions");
             _spriteRenderer.material = defaultMaterial;
         }
 

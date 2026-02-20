@@ -9,7 +9,7 @@ public class EmotionRenderer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Emotion renderer started");
+        //Debug.Log("Emotion renderer started");
         //mouth = GetComponentInChildren<Transform>();
     }
 

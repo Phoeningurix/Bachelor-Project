@@ -15,8 +15,10 @@ namespace AgentLogic.AgentActions.BlobActions
         
         public override bool Tick()
         {
-            AdjustEmotions(_agent.InteractionRequests[0]);
-            ProcessInteractionRequest(_agent.InteractionRequests[0]);
+            BlobInteraction request = _agent.InteractionRequests[0];
+            AdjustEmotions(request);
+            ProcessInteractionRequest(request);
+            
             return true;
         }
 

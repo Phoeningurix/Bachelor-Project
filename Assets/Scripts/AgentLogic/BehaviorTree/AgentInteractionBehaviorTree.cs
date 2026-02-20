@@ -28,6 +28,8 @@ namespace AgentLogic.BehaviorTree
                         }),
                         new BTSequenceNode(new List<BTNode>
                         {
+                            new BTConditionNode(() => Time.time - brain.InteractionRequests[0].TimeStamp 
+                                                      > brain.Blackboard.Get<float>("agentResponseWaitTime")),
                             new BTActionNode(new BlobAnswerRequestAction(brain)),
                             new BTActionNode(new BlobOneTickAction(brain, b =>
                             {
@@ -101,11 +103,11 @@ namespace AgentLogic.BehaviorTree
                         {
                             brain.ModifyEmotion("happiness", 0.1f);
                             //_agent.Blackboard.Set("hasObject", true);
-                            Debug.Log("Picked up object");
+                            //Debug.Log("Picked up object");
                         }, () =>
                         {
                            brain.ModifyEmotion("happiness", -0.1f);
-                            Debug.Log("Failed to pick up object");
+                            //Debug.Log("Failed to pick up object");
                         })),
                     }
                 ),

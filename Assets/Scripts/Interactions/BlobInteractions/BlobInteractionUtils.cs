@@ -34,8 +34,6 @@ namespace Interactions.BlobInteractions
                     brain.ModifyEmotion("anger", -0.2f);
                     brain.ModifyEmotion("fear", -0.1f);
                     break;
-                default:
-                    break;
             }
         }
     }
