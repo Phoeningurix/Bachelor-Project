@@ -57,9 +57,9 @@ namespace AgentLogic
             Blackboard.Set("hasObject", false);
             Blackboard.Set("apples", 0);
             Blackboard.Set("flowers", 0);
-            Blackboard.Set("agentInteractionRadius", 4f);
-            Blackboard.Set("agentInteractionWaitTime", 20f);
-            Blackboard.Set("agentResponseWaitTime", 3f);
+            Blackboard.Set("agentInteractionRadius", 1f);
+            Blackboard.Set("agentInteractionWaitTime", 6f);
+            Blackboard.Set("agentResponseWaitTime", 1f);
         }
 
         public float DeltaTime() => Time.deltaTime;

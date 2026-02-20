@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &16116026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 1923214658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f52ad349a104ea7b3f074e2366cb56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Renderers.SpeechBubbleRenderer
 --- !u!1001 &36612239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,11 +144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.73
+      value: -3.58
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.95
+      value: -2.72
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -171,6 +182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 971086379905765303, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1219769424246205932, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -185,8 +200,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubble
+      value: 
+      objectReference: {fileID: 699973018}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
@@ -215,6 +234,10 @@ PrefabInstance:
       propertyPath: personalityTraits.entries.Array.data[4].value.value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubbleModel
+      value: 
+      objectReference: {fileID: 368279605}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -249,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 86171086}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.48, y: -2.58, z: 0}
+  m_LocalPosition: {x: -6.58, y: -3.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -391,6 +414,11 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!1 &111885758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2055781591236386629, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 1304577638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &327617274
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +516,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2679245, g: 0.19846992, b: 0.13699533, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -498,6 +526,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &343945835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 1569082703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f52ad349a104ea7b3f074e2366cb56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Renderers.SpeechBubbleRenderer
+--- !u!1 &368279605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2055781591236386629, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 36612239}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &434282333
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +815,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9bb273fa2b64050afb87426411e92df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Renderers.AppleRenderer
+--- !u!1 &518660470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2055781591236386629, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 1569082703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +926,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.2
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1025,9 +1074,9 @@ Transform:
   m_GameObject: {fileID: 576627578}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 1.61, z: 0}
-  m_LocalScale: {x: 3.049596, y: 3.0891037, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -3.99, y: 1.8, z: 0}
+  m_LocalScale: {x: 2.83, y: 2.8666627, z: 0.92799175}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1137954274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1094,7 +1143,7 @@ SpriteRenderer:
   m_SortingLayerID: 1541359965
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -7411974349392773033, guid: 510897f22072d404baacde54f67bbea8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1347,6 +1396,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &635886445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2055781591236386629, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 4501925008123992189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &693940093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,6 +1491,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &699973018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 36612239}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f52ad349a104ea7b3f074e2366cb56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Renderers.SpeechBubbleRenderer
 --- !u!1 &904098196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,6 +1592,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &933767441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 1304577638}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f52ad349a104ea7b3f074e2366cb56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Renderers.SpeechBubbleRenderer
 --- !u!1 &941368822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,11 +1981,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.455839
+      value: -3.27
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7547344
+      value: -1.07
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1943,6 +2019,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 971086379905765303, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_Name
       value: Blob2
@@ -1951,6 +2031,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3383488672134158023, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubble
+      value: 
+      objectReference: {fileID: 933767441}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
@@ -1961,7 +2049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[2].value.value
-      value: -0.68
+      value: 0.86
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[3].value.value
@@ -1971,6 +2059,10 @@ PrefabInstance:
       propertyPath: personalityTraits.entries.Array.data[4].value.value
       value: -0.94
       objectReference: {fileID: 0}
+    - target: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubbleModel
+      value: 
+      objectReference: {fileID: 111885758}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2236,11 +2328,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.59
+      value: -2.46
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.36
+      value: -3.53
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2300,12 +2392,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4370962440951494828, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_ObstacleAvoidanceType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubble
+      value: 
+      objectReference: {fileID: 343945835}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
@@ -2326,11 +2422,31 @@ PrefabInstance:
       propertyPath: personalityTraits.entries.Array.data[2].value.value
       value: -0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubbleModel
+      value: 
+      objectReference: {fileID: 518660470}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+--- !u!1 &1585610991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2055781591236386629, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 1923214658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1643809938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+  m_PrefabInstance: {fileID: 4501925008123992189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f52ad349a104ea7b3f074e2366cb56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Renderers.SpeechBubbleRenderer
 --- !u!1 &1648420522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,7 +2846,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2679245, g: 0.19846992, b: 0.13699533, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2770,11 +2886,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.42
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9
+      value: -1.81
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2830,8 +2946,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubble
+      value: 
+      objectReference: {fileID: 16116026}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
@@ -2880,6 +3000,10 @@ PrefabInstance:
       propertyPath: personalityTraits.entries.Array.data[4].value.value
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubbleModel
+      value: 
+      objectReference: {fileID: 1585610991}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3128,11 +3252,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.94
+      value: -1.77
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.81
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 938330415928021287, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3166,6 +3290,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 971086379905765303, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2055781591236386629, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3174,6 +3302,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blob1
       objectReference: {fileID: 0}
+    - target: {fileID: 3195839460222129102, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubble
+      value: 
+      objectReference: {fileID: 1643809938}
+    - target: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: speechBubbleModel
+      value: 
+      objectReference: {fileID: 635886445}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

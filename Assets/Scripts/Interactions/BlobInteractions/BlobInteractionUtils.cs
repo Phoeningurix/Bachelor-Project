@@ -12,7 +12,6 @@ namespace Interactions.BlobInteractions
             {
                 case BlobInteractionResponseType.InsultBack:
                     brain.ModifyEmotion("happiness", -0.2f);
-                    brain.ModifyEmotion("fear", 0.1f);
                     brain.ModifyEmotion("anger", 0.3f);
                     break;
                 case BlobInteractionResponseType.ComplimentBack:

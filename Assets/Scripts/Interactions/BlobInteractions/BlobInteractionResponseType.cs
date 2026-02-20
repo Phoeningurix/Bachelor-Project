@@ -8,6 +8,6 @@ namespace Interactions.BlobInteractions
         ComplimentBack,
         ScreamBack,
         InsultBack,
-        ThankYou // nur wenn ein Geschenk erhalten wurde
+        ThankYou
     }
 }

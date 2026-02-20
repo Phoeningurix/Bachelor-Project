@@ -2,6 +2,7 @@
 using AgentLogic.AgentActions.BlobActions;
 using Interactions;
 using Interactions.BlobInteractions;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace AgentLogic.BehaviorTree
@@ -25,6 +26,20 @@ namespace AgentLogic.BehaviorTree
                             {
                                 b.InteractionRequests.RemoveAt(0);
                             })),
+                        }),
+                        new BTSequenceNode(new List<BTNode>
+                        {
+                            new BTConditionNode(() => // Test for ignoring of the request
+                            {
+                                float probability = 0.3f + brain.emotions["happiness"].Value * 0.1f
+                                                         + brain.personalityTraits["extraversion"].Value * 0.4f
+                                                    - brain.emotions["fear"].Value * 0.2f;
+                                return Random.value > Mathf.Clamp01(probability);
+                            }),
+                            new BTActionNode(new BlobOneTickAction(brain, b =>
+                            {
+                                b.InteractionRequests.RemoveAt(0);
+                            }))
                         }),
                         new BTSequenceNode(new List<BTNode>
                         {

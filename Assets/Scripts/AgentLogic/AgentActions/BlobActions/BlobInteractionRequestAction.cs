@@ -39,7 +39,17 @@ namespace AgentLogic.AgentActions.BlobActions
 
         public override bool Tick()
         {
-            if (_timeSinceStart > _waitTime || _hasReceivedResponse)
+            if (_timeSinceStart > _waitTime && !_hasReceivedResponse)
+            {
+                _timeSinceStart = 0f;
+                _hasSentRequest = false;
+                _agent.ModifyEmotion("happiness", -0.1f 
+                                                  * _agent.personalityTraits.GetBetween01("agreeableness") 
+                                                  * _agent.personalityTraits.GetBetween01("extraversion"));
+                return true;
+            }
+
+            if (_hasReceivedResponse)
             {
                 _timeSinceStart = 0f;
                 _hasSentRequest = false;

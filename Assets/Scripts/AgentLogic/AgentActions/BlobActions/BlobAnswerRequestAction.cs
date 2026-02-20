@@ -34,10 +34,18 @@ namespace AgentLogic.AgentActions.BlobActions
                     + _agent.personalityTraits.GetBetween01("agreeableness") * 0.7f,
                 [BlobInteractionResponseType.ComplimentBack] = 0.3f 
                    - _agent.emotions.GetBetween01("anger") * 0.4f 
-                   + _agent.personalityTraits.GetBetween01("agreeableness") * 0.6f,
-                [BlobInteractionResponseType.ThankYou] = 0.3f, // TODO Werte eintragen
-                [BlobInteractionResponseType.ScreamBack] = 0.3f,
-                [BlobInteractionResponseType.InsultBack] = 0.3f,
+                   + _agent.personalityTraits.GetBetween01("agreeableness") * 0.6f
+                - _agent.personalityTraits.GetBetween01("extraversion") * 0.2f,
+                [BlobInteractionResponseType.ThankYou] = 0.5f 
+                     - _agent.emotions.GetBetween01("anger") * 0.3f 
+                     + _agent.personalityTraits.GetBetween01("agreeableness") * 0.7f, 
+                [BlobInteractionResponseType.ScreamBack] = 0.2f 
+                   + _agent.emotions.GetBetween01("anger") * 0.5f 
+                   - _agent.personalityTraits.GetBetween01("agreeableness") * 0.4f
+                   + _agent.personalityTraits.GetBetween01("extraversion") * 0.2f,
+                [BlobInteractionResponseType.InsultBack] = 0.5f 
+                    + _agent.emotions.GetBetween01("anger") * 0.3f
+                    - _agent.personalityTraits.GetBetween01("agreeableness") * 0.7f,
                 
             }; 
                 
@@ -72,21 +80,27 @@ namespace AgentLogic.AgentActions.BlobActions
             {
                 case BlobInteractionType.Greeting: //TODO genauer definieren * _agent.personalityTraits["extraversion"].Value
                     _agent.ModifyEmotion("happiness", 0.2f);
+                    _agent.ModifyEmotion("fear", -0.1f);
                     break;
                 case BlobInteractionType.Insult:
                     _agent.ModifyEmotion("happiness", -0.2f);
                     _agent.ModifyEmotion("anger", 0.3f);
                     break;
                 case BlobInteractionType.Compliment:
-                    _agent.ModifyEmotion("happiness", 0.2f);
+                    _agent.ModifyEmotion("happiness", 0.3f);
+                    _agent.ModifyEmotion("fear", -0.1f);
+                    _agent.ModifyEmotion("anger", -0.1f);
                     break;
                 case BlobInteractionType.Gift:
                     _agent.ModifyEmotion("happiness", 0.4f);
+                    _agent.ModifyEmotion("fear", -0.2f);
+                    _agent.ModifyEmotion("anger", -0.2f);
                     _agent.Blackboard.Set("flowers", _agent.Blackboard.Get<int>("flowers") + 1);
                     break;
                 case BlobInteractionType.Scream:
                     _agent.ModifyEmotion("happiness", -0.2f);
                     _agent.ModifyEmotion("fear", 0.3f);
+                    _agent.ModifyEmotion("anger", 0.1f);
                     break;
             }
         }
