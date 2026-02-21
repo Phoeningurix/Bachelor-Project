@@ -18,43 +18,35 @@ namespace AgentLogic.BehaviorTree
                     new BTConditionNode(() => brain.InteractionRequests.Count > 0),
                     new BTSelectorNode(new List<BTNode>
                     {
-                        new BTSequenceNode(new List<BTNode>
-                        {
-                            new BTConditionNode(() => Time.time - brain.InteractionRequests[0].TimeStamp 
-                                                      > brain.Blackboard.Get<float>("agentInteractionWaitTime")),
-                            new BTActionNode(new BlobOneTickAction(brain, b =>
-                            {
-                                b.InteractionRequests.RemoveAt(0);
-                            })),
-                        }),
+                        new BTConditionNode(() => Time.time - brain.InteractionRequests[0].TimeStamp > brain.Blackboard.Get<float>("agentInteractionWaitTime")),
                         new BTSequenceNode(new List<BTNode>
                         {
                             new BTConditionNode(() => // Test for ignoring of the request
                             {
-                                float probability = 0.3f + brain.emotions["happiness"].Value * 0.1f
+                                float probability = 0.8f + brain.emotions["happiness"].Value * 0.1f
                                                          + brain.personalityTraits["extraversion"].Value * 0.4f
                                                     - brain.emotions["fear"].Value * 0.2f;
                                 return Random.value > Mathf.Clamp01(probability);
                             }),
-                            new BTActionNode(new BlobOneTickAction(brain, b =>
-                            {
-                                b.InteractionRequests.RemoveAt(0);
-                            }))
+                            // even when ignoring, we need to adjust emotions
+                            new BTActionNode(new BlobOnRequestAdjustEmotions(brain)),
                         }),
                         new BTSequenceNode(new List<BTNode>
                         {
-                            new BTConditionNode(() => Time.time - brain.InteractionRequests[0].TimeStamp 
-                                                      > brain.Blackboard.Get<float>("agentResponseWaitTime")),
                             new BTActionNode(new BlobAnswerRequestAction(brain)),
-                            new BTActionNode(new BlobOneTickAction(brain, b =>
-                            {
-                                b.InteractionRequests.RemoveAt(0);
-                            })),
+                            new BTActionNode(new BlobOnRequestAdjustEmotions(brain))
                         })
                     }),
+                    new BTActionNode(new BlobOneTickAction(brain, b =>
+                    {
+                        b.InteractionRequests.RemoveAt(0);
+                    })),
                 }),
                 new BTSequenceNode(new List<BTNode> // Interact with other agents
                 {
+                    new BTConditionNode(() => 
+                        Time.time - brain.Blackboard.Get<float>("lastAgentInteractionCompleted") > 
+                        brain.Blackboard.Get<float>("agentInteractionCooldown")),
                     new BTConditionNode(() => brain.interactionLocator
                         .FindBlobBrainsInRange(
                             brain

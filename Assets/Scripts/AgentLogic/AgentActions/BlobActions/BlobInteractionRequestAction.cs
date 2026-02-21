@@ -41,8 +41,10 @@ namespace AgentLogic.AgentActions.BlobActions
         {
             if (_timeSinceStart > _waitTime && !_hasReceivedResponse)
             {
+                // On ignored
                 _timeSinceStart = 0f;
                 _hasSentRequest = false;
+                _agent.Blackboard.Set("lastAgentInteractionCompleted", Time.time);
                 _agent.ModifyEmotion("happiness", -0.1f 
                                                   * _agent.personalityTraits.GetBetween01("agreeableness") 
                                                   * _agent.personalityTraits.GetBetween01("extraversion"));
@@ -51,9 +53,11 @@ namespace AgentLogic.AgentActions.BlobActions
 
             if (_hasReceivedResponse)
             {
+                // on response
                 _timeSinceStart = 0f;
                 _hasSentRequest = false;
                 _hasReceivedResponse = false;
+                _agent.Blackboard.Set("lastAgentInteractionCompleted", Time.time);
                 return true;
             }
 

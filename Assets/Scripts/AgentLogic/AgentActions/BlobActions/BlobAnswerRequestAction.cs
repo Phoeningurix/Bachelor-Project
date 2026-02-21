@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Interactions.BlobInteractions;
+using UnityEngine;
 using Utils;
 
 namespace AgentLogic.AgentActions.BlobActions
@@ -8,6 +9,8 @@ namespace AgentLogic.AgentActions.BlobActions
     {
         private BlobBrain _agent;
 
+        private BlobInteraction _request = null;
+
         public BlobAnswerRequestAction(BlobBrain agent)
         {
             _agent = agent;
@@ -15,17 +18,23 @@ namespace AgentLogic.AgentActions.BlobActions
         
         public override bool Tick()
         {
-            BlobInteraction request = _agent.InteractionRequests[0];
-            AdjustEmotions(request);
-            ProcessInteractionRequest(request);
+            if (_request == null) 
+            {
+                _request = _agent.InteractionRequests[0];
+            }
+            else if (Time.time - _request.TimeStamp > _agent.Blackboard.Get<float>("agentResponseWaitTime"))
+            {
+                ProcessInteractionRequest(_request);
+                _request = null;
+                _agent.Blackboard.Set("lastAgentInteractionCompleted", Time.time);
+                return true;
+            }
             
-            return true;
+            return false;
         }
 
         private void ProcessInteractionRequest(BlobInteraction interaction)
         {
-            BlobInteractionResponseType response;
-
             Dictionary<BlobInteractionResponseType, float> weights = new Dictionary<BlobInteractionResponseType, float>
             {
                 
@@ -71,39 +80,5 @@ namespace AgentLogic.AgentActions.BlobActions
             
             _agent.InteractionRequests[0].InvokeReact(choices[0]);
         }
-
-        private void AdjustEmotions(BlobInteraction interaction)
-        {
-            //TODO schauen ob man den Sender kennt -> je nach Openness die happiness und fear ändern
-
-            switch (interaction.Message)
-            {
-                case BlobInteractionType.Greeting: //TODO genauer definieren * _agent.personalityTraits["extraversion"].Value
-                    _agent.ModifyEmotion("happiness", 0.2f);
-                    _agent.ModifyEmotion("fear", -0.1f);
-                    break;
-                case BlobInteractionType.Insult:
-                    _agent.ModifyEmotion("happiness", -0.2f);
-                    _agent.ModifyEmotion("anger", 0.3f);
-                    break;
-                case BlobInteractionType.Compliment:
-                    _agent.ModifyEmotion("happiness", 0.3f);
-                    _agent.ModifyEmotion("fear", -0.1f);
-                    _agent.ModifyEmotion("anger", -0.1f);
-                    break;
-                case BlobInteractionType.Gift:
-                    _agent.ModifyEmotion("happiness", 0.4f);
-                    _agent.ModifyEmotion("fear", -0.2f);
-                    _agent.ModifyEmotion("anger", -0.2f);
-                    _agent.Blackboard.Set("flowers", _agent.Blackboard.Get<int>("flowers") + 1);
-                    break;
-                case BlobInteractionType.Scream:
-                    _agent.ModifyEmotion("happiness", -0.2f);
-                    _agent.ModifyEmotion("fear", 0.3f);
-                    _agent.ModifyEmotion("anger", 0.1f);
-                    break;
-            }
-        }
-        
     }
 }
