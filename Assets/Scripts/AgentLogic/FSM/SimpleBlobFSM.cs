@@ -20,14 +20,23 @@ namespace AgentLogic.FSM
             var idle = new FSMIdleState(brain);
             var respond = new FSMRespondToInteractionRequestState(brain);
             var responseFinished = new FSMFinishedResponseState(); // transition state
+            var sendInteraction = new FSMSendInteractionState(brain);
+            var onInteractionIgnored = new FSMOnInteractionIgnoredState(brain);
+            var interactionFinished = new FSMSendInteractionFinishedState();
+
+
             
             // Normale States
+            At(idle, sendInteraction, IsNearAgents() & WantsToInteract());
             At(idle, wander, CanWander() & IsNotIdle());
             At(idle, idle, IsNotIdle());
+            
+            
             
             At(wander, reachedTarget, ReachedTarget());
             
             At(reachedTarget, wander, CanWander());
+            At(reachedTarget, sendInteraction, IsNearAgents() & WantsToInteract());
             At(reachedTarget, idle, Always());
             
             At(respond, responseFinished, DelayCondition(
@@ -38,6 +47,13 @@ namespace AgentLogic.FSM
             
             At(responseFinished, wander, CanWander());
             At(responseFinished, idle, Always());
+            
+            At(sendInteraction, onInteractionIgnored, DelayCondition(() => brain.Blackboard.Get<float>("agentInteractionInvoked"), brain.Blackboard.Get<float>("agentInteractionWaitTime")));
+            At(onInteractionIgnored, interactionFinished, Always());
+            At(sendInteraction, interactionFinished, HasReceivedResponse());
+            
+            At(interactionFinished, wander, CanWander());
+            At(interactionFinished, idle, Always());
             
             // Unterbrechende States
             Ata(idle, SpacePressed());
@@ -91,6 +107,13 @@ namespace AgentLogic.FSM
             
             //BoolPredicate HasReceivedRequestThisTick() => new(() => brain.Blackboard.Get<float>("LastRequestReceivedTimeStamp") ==);
             
+            BoolPredicate HasReceivedResponse() => new(() => brain.Blackboard.Get<bool>("receivedResponse"));
+
+            BoolPredicate IsNearAgents() => new(() =>
+                brain.interactionLocator.FindBlobBrainsInRange(
+                    brain.Blackboard.Get<float>("agentInteractionRadius")).Count > 0);
+
+            BoolPredicate WantsToInteract() => new(() => DecisionUtils.CheckSendInteraction(brain));
         }
 
         public void Tick()

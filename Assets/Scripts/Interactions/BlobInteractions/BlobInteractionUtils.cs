@@ -38,7 +38,7 @@ namespace Interactions.BlobInteractions
             }
         }
 
-        public static BlobInteractionResponseType ChooseResponse(BlobBrain brain, BlobInteractionType message)
+        public static BlobInteractionResponseType ChooseResponseType(BlobBrain brain, BlobInteractionType message)
         {
             Dictionary<BlobInteractionResponseType, float> weights = new Dictionary<BlobInteractionResponseType, float>
             {
@@ -79,6 +79,47 @@ namespace Interactions.BlobInteractions
                 case BlobInteractionType.Compliment:
                     choices.Add(BlobInteractionResponseType.ThankYou);
                     break;
+            }
+            
+            ListUtils.WeightedShuffleInPlace(choices, r => weights[r]);
+            return choices[0];
+        }
+
+        public static BlobInteractionType ChooseInteractionType(BlobBrain brain)
+        {
+            Dictionary<BlobInteractionType, float> weights = new Dictionary<BlobInteractionType, float>
+            {
+                
+                [BlobInteractionType.Greeting] = 0.5f 
+                     - brain.emotions.GetBetween01("anger") * 0.3f 
+                     + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f,
+                [BlobInteractionType.Compliment] = 0.3f 
+                   - brain.emotions.GetBetween01("anger") * 0.4f 
+                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.6f
+                   - brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
+                [BlobInteractionType.Insult] = 0.5f 
+                     - brain.emotions.GetBetween01("anger") * 0.3f 
+                     + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f, 
+                [BlobInteractionType.Scream] = 0.2f 
+                   + brain.emotions.GetBetween01("anger") * 0.5f 
+                   - brain.personalityTraits.GetBetween01("agreeableness") * 0.4f
+                   + brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
+                [BlobInteractionType.Gift] = 0.2f 
+                 + brain.emotions.GetBetween01("anger") * 0.3f
+                 - brain.personalityTraits.GetBetween01("agreeableness") * 0.7f,
+            };
+
+            List<BlobInteractionType> choices = new List<BlobInteractionType>
+            {
+                BlobInteractionType.Compliment,
+                BlobInteractionType.Greeting,
+                BlobInteractionType.Insult,
+                BlobInteractionType.Scream,
+            };
+            
+            if (brain.Blackboard.Get<int>("flowers") > 0)
+            {
+                choices.Add(BlobInteractionType.Gift);
             }
             
             ListUtils.WeightedShuffleInPlace(choices, r => weights[r]);

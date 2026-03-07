@@ -209,7 +209,7 @@ PrefabInstance:
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
-      objectReference: {fileID: 11400000, guid: fea4e5ae276d87341a07ee4738bb1396, type: 2}
+      objectReference: {fileID: 11400000, guid: c6650b6533781fe45b2707a9fc8e237c, type: 2}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: emotions.entries.Array.data[0].value.value
       value: 0
@@ -2029,7 +2029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3383488672134158023, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_Enabled
@@ -2042,7 +2042,7 @@ PrefabInstance:
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
-      objectReference: {fileID: 11400000, guid: fea4e5ae276d87341a07ee4738bb1396, type: 2}
+      objectReference: {fileID: 11400000, guid: c6650b6533781fe45b2707a9fc8e237c, type: 2}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.data[0].value.value
       value: 0.22
@@ -2392,7 +2392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4370962440951494828, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_ObstacleAvoidanceType
@@ -2405,7 +2405,7 @@ PrefabInstance:
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
-      objectReference: {fileID: 11400000, guid: fea4e5ae276d87341a07ee4738bb1396, type: 2}
+      objectReference: {fileID: 11400000, guid: c6650b6533781fe45b2707a9fc8e237c, type: 2}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: emotions.entries.Array.data[0].value.value
       value: 0
@@ -2946,7 +2946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: speechBubble
@@ -2955,7 +2955,7 @@ PrefabInstance:
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: behaviorSupplier
       value: 
-      objectReference: {fileID: 11400000, guid: fea4e5ae276d87341a07ee4738bb1396, type: 2}
+      objectReference: {fileID: 11400000, guid: c6650b6533781fe45b2707a9fc8e237c, type: 2}
     - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: personalityTraits.entries.Array.size
       value: 5
@@ -3302,6 +3302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blob1
       objectReference: {fileID: 0}
+    - target: {fileID: 2592210773534448529, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3195839460222129102, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3310,6 +3314,10 @@ PrefabInstance:
       propertyPath: speechBubble
       value: 
       objectReference: {fileID: 1643809938}
+    - target: {fileID: 4937883496564065650, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
+      propertyPath: behaviorSupplier
+      value: 
+      objectReference: {fileID: 11400000, guid: c6650b6533781fe45b2707a9fc8e237c, type: 2}
     - target: {fileID: 5616546988719601897, guid: 82904efb48d58ff4fb9da0e2718e79b9, type: 3}
       propertyPath: m_Enabled
       value: 1

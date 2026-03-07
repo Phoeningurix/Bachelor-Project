@@ -36,7 +36,7 @@ namespace AgentLogic.AgentActions.BlobActions
         private void ProcessInteractionRequest(BlobInteraction interaction)
         {
             
-            _agent.InteractionRequests[0].InvokeReact(BlobInteractionUtils.ChooseResponse(_agent, interaction.Message));
+            _agent.InteractionRequests[0].InvokeReact(BlobInteractionUtils.ChooseResponseType(_agent, interaction.Message));
         }
     }
 }

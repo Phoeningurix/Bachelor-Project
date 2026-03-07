@@ -35,7 +35,7 @@ namespace AgentLogic.FSM.FSMStates
 
         public void OnExit()
         {
-            _interaction?.InvokeReact(BlobInteractionUtils.ChooseResponse(_brain, _interaction.Message));
+            _interaction?.InvokeReact(BlobInteractionUtils.ChooseResponseType(_brain, _interaction.Message));
             _brain.Blackboard.Set("lastAgentInteractionCompleted", Time.time);
             
         }
