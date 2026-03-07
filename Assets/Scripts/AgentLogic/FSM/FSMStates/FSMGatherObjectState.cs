@@ -1,4 +1,4 @@
-﻿namespace AgentLogic.FSM
+﻿namespace AgentLogic.FSM.FSMStates
 {
     public class FSMGatherObjectState : IState
     {

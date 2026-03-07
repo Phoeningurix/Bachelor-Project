@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace AgentLogic.FSM
+namespace AgentLogic.FSM.FSMStates
 {
     public class FSMWanderState : IState
     {

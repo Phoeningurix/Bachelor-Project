@@ -1,4 +1,5 @@
 ﻿using System;
+using AgentLogic.FSM.FSMStates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -15,16 +16,32 @@ namespace AgentLogic.FSM
             _stateMachine = new StateMachine();
             
             var wander = new FSMWanderState(brain);
+            var reachedTarget = new FSMReachedTargetState(); // transition state
             var idle = new FSMIdleState(brain);
+            var respond = new FSMRespondToInteractionRequestState(brain);
+            var responseFinished = new FSMFinishedResponseState(); // transition state
             
             // Normale States
             At(idle, wander, CanWander() & IsNotIdle());
             At(idle, idle, IsNotIdle());
-            At(wander, wander, CanWander() & ReachedTarget());
-            At(wander, idle, ReachedTarget());
+            
+            At(wander, reachedTarget, ReachedTarget());
+            
+            At(reachedTarget, wander, CanWander());
+            At(reachedTarget, idle, Always());
+            
+            At(respond, responseFinished, DelayCondition(
+                () => brain.Blackboard.Get<float>("LastRequestReceivedTimeStamp"), 
+                brain.Blackboard.Get<float>("agentResponseWaitTime")
+                )
+            );
+            
+            At(responseFinished, wander, CanWander());
+            At(responseFinished, idle, Always());
             
             // Unterbrechende States
             Ata(idle, SpacePressed());
+            Ata(respond, HasRequests() & !CheckIgnoreRequest());
             
             void At(IState from, IState to, Func<bool> condition) => 
                 _stateMachine.AddTransition(from, to, condition);
@@ -45,6 +62,34 @@ namespace AgentLogic.FSM
                 Random.value <= brain.emotions.GetBetween01("happiness"));
 
             BoolPredicate SpacePressed() => new(() => Keyboard.current.spaceKey.wasPressedThisFrame);
+            BoolPredicate Always() => new(() => true);
+
+            BoolPredicate HasRequests() => new(() => brain.InteractionRequests.Count > 0);
+
+            // CheckIgnoreRequest deletes a request if ignored
+            BoolPredicate CheckIgnoreRequest() => new(() =>
+            {
+                if (brain.InteractionRequests.Count == 0)
+                {
+                    Debug.LogError("FSM tried to ignore a non-existing request");
+                    return true;
+                }
+
+                if (DecisionUtils.CheckIgnore(brain))
+                {
+                    brain.InteractionRequests.RemoveAt(0);
+                    return true;
+                }
+                return false;
+            });
+
+            BoolPredicate DelayCondition(Func<float> startTimestampSupplier, float delay) =>
+                new(() =>
+                {
+                    return Time.time >= startTimestampSupplier.Invoke() + delay;
+                });
+            
+            //BoolPredicate HasReceivedRequestThisTick() => new(() => brain.Blackboard.Get<float>("LastRequestReceivedTimeStamp") ==);
             
         }
 

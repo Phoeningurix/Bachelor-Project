@@ -62,6 +62,7 @@ namespace AgentLogic.BehaviorTree
                     // new BTActionNode(new BlobAgentInteractionAction(brain)),
                     new BTWeightedRandomSelectorNode(new List<BTWeightedNode>
                     {
+                        //TODO fix Interactions and weights (add compliments)
                         // pretend these are different actions / different interactions
                         new BTWeightedActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Greeting), 
                             () => brain.emotions.GetBetween01("happiness") * 0.2f 

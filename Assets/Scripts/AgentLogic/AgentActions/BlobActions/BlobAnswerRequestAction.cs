@@ -35,50 +35,8 @@ namespace AgentLogic.AgentActions.BlobActions
 
         private void ProcessInteractionRequest(BlobInteraction interaction)
         {
-            Dictionary<BlobInteractionResponseType, float> weights = new Dictionary<BlobInteractionResponseType, float>
-            {
-                
-                [BlobInteractionResponseType.Wave] = 0.5f 
-                    - _agent.emotions.GetBetween01("anger") * 0.3f 
-                    + _agent.personalityTraits.GetBetween01("agreeableness") * 0.7f,
-                [BlobInteractionResponseType.ComplimentBack] = 0.3f 
-                   - _agent.emotions.GetBetween01("anger") * 0.4f 
-                   + _agent.personalityTraits.GetBetween01("agreeableness") * 0.6f
-                - _agent.personalityTraits.GetBetween01("extraversion") * 0.2f,
-                [BlobInteractionResponseType.ThankYou] = 0.5f 
-                     - _agent.emotions.GetBetween01("anger") * 0.3f 
-                     + _agent.personalityTraits.GetBetween01("agreeableness") * 0.7f, 
-                [BlobInteractionResponseType.ScreamBack] = 0.2f 
-                   + _agent.emotions.GetBetween01("anger") * 0.5f 
-                   - _agent.personalityTraits.GetBetween01("agreeableness") * 0.4f
-                   + _agent.personalityTraits.GetBetween01("extraversion") * 0.2f,
-                [BlobInteractionResponseType.InsultBack] = 0.5f 
-                    + _agent.emotions.GetBetween01("anger") * 0.3f
-                    - _agent.personalityTraits.GetBetween01("agreeableness") * 0.7f,
-                
-            }; 
-                
-            List<BlobInteractionResponseType> choices = new List<BlobInteractionResponseType>
-            {
-                BlobInteractionResponseType.ComplimentBack,
-                BlobInteractionResponseType.Wave,
-                BlobInteractionResponseType.InsultBack,
-                BlobInteractionResponseType.ScreamBack,
-            };
-
-            switch (interaction.Message)
-            {
-                case BlobInteractionType.Gift:
-                    choices.Add(BlobInteractionResponseType.ThankYou);
-                    break;
-                case BlobInteractionType.Compliment:
-                    choices.Add(BlobInteractionResponseType.ThankYou);
-                    break;
-            }
             
-            ListUtils.WeightedShuffleInPlace(choices, r => weights[r]);
-            
-            _agent.InteractionRequests[0].InvokeReact(choices[0]);
+            _agent.InteractionRequests[0].InvokeReact(BlobInteractionUtils.ChooseResponse(_agent, interaction.Message));
         }
     }
 }

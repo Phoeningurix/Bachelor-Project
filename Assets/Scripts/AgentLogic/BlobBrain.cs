@@ -62,6 +62,7 @@ namespace AgentLogic
             Blackboard.Set("agentResponseWaitTime", 1f);
             Blackboard.Set("agentInteractionCooldown", 4f);
             Blackboard.Set("lastAgentInteractionCompleted", -100f);
+            Blackboard.Set("LastRequestReceivedTimeStamp", -100f);
         }
 
         public float DeltaTime() => Time.deltaTime;
@@ -111,6 +112,7 @@ namespace AgentLogic
         public void RequestInteraction(BlobInteraction interaction)
         {
             InteractionRequests.Add(interaction);
+            Blackboard.Set("LastRequestReceivedTimeStamp", Time.time);
         }
 
     }

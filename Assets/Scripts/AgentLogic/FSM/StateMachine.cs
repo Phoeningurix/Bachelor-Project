@@ -38,6 +38,7 @@ namespace AgentLogic.FSM
 
         public void SetState(IState state)
         {
+            // call onExit and onEnter even when transitioning to same state as before
             //if (state == _currentState) return;
             
             _currentState?.OnExit();
@@ -51,7 +52,7 @@ namespace AgentLogic.FSM
 
         public void AddTransition(IState from, IState to, Func<bool> predicate)
         {
-            if (_transitions.TryGetValue(from.GetType(), out var transitions) == false)
+            if (!_transitions.TryGetValue(from.GetType(), out var transitions))
             {
                 transitions = new List<Transition>();
                 _transitions[from.GetType()] = transitions;

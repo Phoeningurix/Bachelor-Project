@@ -1,7 +1,5 @@
 ﻿
-using UnityEngine;
-
-namespace AgentLogic.FSM
+namespace AgentLogic.FSM.FSMStates
 {
     public class FSMIdleState : IState
     {
