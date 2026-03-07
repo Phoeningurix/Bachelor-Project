@@ -125,5 +125,38 @@ namespace Interactions.BlobInteractions
             ListUtils.WeightedShuffleInPlace(choices, r => weights[r]);
             return choices[0];
         }
+        
+        public static void OnRequestAdjustEmotions(BlobBrain brain, BlobInteractionType message)
+        {
+            //TODO schauen ob man den Sender kennt -> je nach Openness die happiness und fear ändern
+
+            switch (message)
+            {
+                case BlobInteractionType.Greeting: //TODO genauer definieren * _agent.personalityTraits["extraversion"].Value
+                    brain.ModifyEmotion("happiness", 0.2f);
+                    brain.ModifyEmotion("fear", -0.1f);
+                    break;
+                case BlobInteractionType.Insult:
+                    brain.ModifyEmotion("happiness", -0.2f);
+                    brain.ModifyEmotion("anger", 0.3f);
+                    break;
+                case BlobInteractionType.Compliment:
+                    brain.ModifyEmotion("happiness", 0.3f);
+                    brain.ModifyEmotion("fear", -0.1f);
+                    brain.ModifyEmotion("anger", -0.1f);
+                    break;
+                case BlobInteractionType.Gift:
+                    brain.ModifyEmotion("happiness", 0.4f);
+                    brain.ModifyEmotion("fear", -0.2f);
+                    brain.ModifyEmotion("anger", -0.2f);
+                    brain.Blackboard.Set("flowers", brain.Blackboard.Get<int>("flowers") + 1);
+                    break;
+                case BlobInteractionType.Scream:
+                    brain.ModifyEmotion("happiness", -0.2f);
+                    brain.ModifyEmotion("fear", 0.3f);
+                    brain.ModifyEmotion("anger", 0.1f);
+                    break;
+            }
+        }
     }
 }
