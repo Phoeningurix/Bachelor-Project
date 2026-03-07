@@ -28,7 +28,7 @@ namespace Renderers
         void Awake()
         {
             _timeStamp = 0f;
-            speechBubbleModel = GameObject.Find("SpeechBubbleModel");
+            // speechBubbleModel = GameObject.Find("SpeechBubbleModel");
             HideContent();
         }
 

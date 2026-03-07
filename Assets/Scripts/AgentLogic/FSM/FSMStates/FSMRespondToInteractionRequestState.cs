@@ -35,6 +35,7 @@ namespace AgentLogic.FSM.FSMStates
 
         public void OnExit()
         {
+            // todo change emotions
             _interaction?.InvokeReact(BlobInteractionUtils.ChooseResponseType(_brain, _interaction.Message));
             _brain.Blackboard.Set("lastAgentInteractionCompleted", Time.time);
             
