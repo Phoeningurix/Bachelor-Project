@@ -45,9 +45,7 @@ namespace AgentLogic.AgentActions.BlobActions
                 _timeSinceStart = 0f;
                 _hasSentRequest = false;
                 _agent.Blackboard.Set("lastAgentInteractionCompleted", Time.time);
-                _agent.ModifyEmotion("happiness", -0.1f 
-                                                  * _agent.personalityTraits.GetBetween01("agreeableness") 
-                                                  * _agent.personalityTraits.GetBetween01("extraversion"));
+                BlobInteractionUtils.OnIgnoredAdjustEmotions(_agent);
                 return true;
             }
 
@@ -76,7 +74,7 @@ namespace AgentLogic.AgentActions.BlobActions
                 }
 
                 ListUtils.ShuffleInPlace(otherAgents);
-                BlobBrain interactionReceiver = otherAgents[0]; //TODO: Oder auf eine andere Art entscheiden
+                BlobBrain interactionReceiver = otherAgents[0]; 
                 
                 _hasReceivedResponse = false;
                 

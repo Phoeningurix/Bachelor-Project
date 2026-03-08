@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Interactions.BlobInteractions;
+using UnityEngine;
 
 namespace AgentLogic.FSM.FSMStates
 {
@@ -17,9 +18,7 @@ namespace AgentLogic.FSM.FSMStates
 
         public void OnEnter()
         {
-            Debug.Log(_agent.name + " is entering FSMOnInteractionIgnoredState");
-
-            // TODO: adjust emotions on ignored
+            BlobInteractionUtils.OnIgnoredAdjustEmotions(_agent);
         }
 
         public void OnExit()

@@ -41,8 +41,6 @@ namespace Renderers
             }
             
             if (SpeechBubbleIsVisible()) _timeStamp += Time.deltaTime;
-            //TODO Zeit zählen
-            //TODO Zurücksetzen wenn überschrieben
         }
 
         public void Display(BlobInteractionType interactionType)
@@ -91,9 +89,6 @@ namespace Renderers
 
         private void DisplayContent(Sprite sprite)
         {
-            //TODO Speechbubble muss auftauchen
-            //TODO TimeStamps -> Speech Bubble verschwindet
-            
             _timeStamp = 0f;
             speechBubbleContent.sprite = sprite;
             speechBubbleModel.gameObject.SetActive(true);
@@ -101,7 +96,6 @@ namespace Renderers
 
         private void HideContent()
         {
-            //TODO verstecken
             speechBubbleModel.gameObject.SetActive(false);
         }
         

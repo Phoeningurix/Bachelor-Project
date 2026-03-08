@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AgentLogic;
+using UnityEngine;
 using Utils;
 
 namespace Interactions.BlobInteractions
@@ -90,23 +91,11 @@ namespace Interactions.BlobInteractions
             Dictionary<BlobInteractionType, float> weights = new Dictionary<BlobInteractionType, float>
             {
                 
-                [BlobInteractionType.Greeting] = 0.5f 
-                     - brain.emotions.GetBetween01("anger") * 0.3f 
-                     + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f,
-                [BlobInteractionType.Compliment] = 0.3f 
-                   - brain.emotions.GetBetween01("anger") * 0.4f 
-                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.6f
-                   - brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
-                [BlobInteractionType.Insult] = 0.5f 
-                     - brain.emotions.GetBetween01("anger") * 0.3f 
-                     + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f, 
-                [BlobInteractionType.Scream] = 0.2f 
-                   + brain.emotions.GetBetween01("anger") * 0.5f 
-                   - brain.personalityTraits.GetBetween01("agreeableness") * 0.4f
-                   + brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
-                [BlobInteractionType.Gift] = 0.2f 
-                 + brain.emotions.GetBetween01("anger") * 0.3f
-                 - brain.personalityTraits.GetBetween01("agreeableness") * 0.7f,
+                [BlobInteractionType.Greeting] =  brain.GetGreetingWeight(),
+                [BlobInteractionType.Compliment] = brain.GetComplimentWeight(),
+                [BlobInteractionType.Insult] = brain.GetInsultWeight(), 
+                [BlobInteractionType.Scream] = brain.GetScreamWeight(),
+                [BlobInteractionType.Gift] = brain.GetGiftWeight(),
             };
 
             List<BlobInteractionType> choices = new List<BlobInteractionType>
@@ -157,6 +146,14 @@ namespace Interactions.BlobInteractions
                     brain.ModifyEmotion("anger", 0.1f);
                     break;
             }
+        }
+
+        public static void OnIgnoredAdjustEmotions(BlobBrain brain)
+        {
+            brain.ModifyEmotion("happiness", 
+                -0.1f * brain.personalityTraits.GetBetween01("agreeableness") 
+                      * brain.personalityTraits.GetBetween01("extraversion"));
+
         }
     }
 }

@@ -18,13 +18,6 @@ namespace AgentLogic.AgentActions.BlobActions
             
             _agent.NavMeshAgent.speed = speed;
             
-            //Vector3 target = _agent.Blackboard.Get<Vector3>("wanderTarget");
-            
-            /*_agent.transform.position = Vector3.MoveTowards(_agent.transform.position,
-                target,
-                speed * _agent.DeltaTime()
-            );*/
-            
             if (_agent.NavMeshAgent.enabled 
                 && !_agent.NavMeshAgent.pathPending 
                 && _agent.NavMeshAgent.remainingDistance <= _agent.NavMeshAgent.stoppingDistance)

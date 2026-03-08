@@ -12,7 +12,7 @@ namespace AgentLogic.BehaviorTree
         public AgentInteractionBehaviorTree(BlobBrain brain)
         {
             Root = new BTSelectorNode(new List<BTNode>
-            { //TODO als erstes prüfen ob es Requests gibt.
+            { 
                 new BTSequenceNode(new List<BTNode>
                 {
                     new BTConditionNode(() => brain.InteractionRequests.Count > 0),
@@ -21,13 +21,8 @@ namespace AgentLogic.BehaviorTree
                         new BTConditionNode(() => Time.time - brain.InteractionRequests[0].TimeStamp > brain.Blackboard.Get<float>("agentInteractionWaitTime")),
                         new BTSequenceNode(new List<BTNode>
                         {
-                            new BTConditionNode(() => // Test for ignoring of the request
-                            {
-                                float probability = 0.8f + brain.emotions["happiness"].Value * 0.1f
-                                                         + brain.personalityTraits["extraversion"].Value * 0.4f
-                                                    - brain.emotions["fear"].Value * 0.2f;
-                                return Random.value > Mathf.Clamp01(probability);
-                            }),
+                            // Test for ignoring of the request
+                            new BTConditionNode(() => DecisionUtils.CheckIgnore(brain)),
                             // even when ignoring, we need to adjust emotions
                             new BTActionNode(new BlobOnRequestAdjustEmotions(brain)),
                         }),
@@ -51,33 +46,19 @@ namespace AgentLogic.BehaviorTree
                         .FindBlobBrainsInRange(
                             brain
                                 .Blackboard.Get<float>("agentInteractionRadius")).Count > 0),
-                    new BTConditionNode(() =>
-                    {
-                        float probability = 0.3f + brain.emotions["happiness"].Value * 0.1f
-                                            + brain.personalityTraits["extraversion"].Value * 0.4f
-                                            - brain.emotions["fear"].Value * 0.2f;
-                        float r = Random.value;
-                        return r < Mathf.Clamp01(probability);
-                    }),
-                    // new BTActionNode(new BlobAgentInteractionAction(brain)),
+                    new BTConditionNode(() => DecisionUtils.CheckSendInteraction(brain)),
                     new BTWeightedRandomSelectorNode(new List<BTWeightedNode>
                     {
-                        //TODO fix Interactions and weights (add compliments)
-                        // pretend these are different actions / different interactions
                         new BTWeightedActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Greeting), 
-                            () => brain.emotions.GetBetween01("happiness") * 0.2f 
-                                + brain.personalityTraits.GetBetween01("extraversion") * 0.2f 
-                                - brain.emotions.GetBetween01("fear") * 0.1f),
-                        new BTWeightedActionNode(new BlobInteractionRequestAction(
-                                brain, 
-                                BlobInteractionType.Insult), 
-                            () => 0.2f + brain.emotions.GetBetween01("happiness") * 0.3f 
-                                  - brain.emotions.GetBetween01("fear") * 0.2f),
-                        new BTWeightedActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Scream)),  // no weight = 0f always
+                            brain.GetGreetingWeight),
+                        new BTWeightedActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Insult), 
+                            brain.GetInsultWeight),
+                        new BTWeightedActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Compliment),
+                            brain.GetComplimentWeight),
+                        new BTWeightedActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Scream),
+                            brain.GetScreamWeight),
                         new BTWeightedSequenceNode(
-                            () => brain.emotions.GetBetween01("happiness") * 0.2f 
-                                  + brain.personalityTraits.GetBetween01("extraversion") * 0.2f 
-                                  - brain.emotions.GetBetween01("fear") * 0.1f, new List<BTNode>
+                            brain.GetGiftWeight, new List<BTNode>
                             {
                                 new BTConditionNode(() => brain.Blackboard.Get<int>("flowers") > 0),
                                 new BTActionNode(new BlobInteractionRequestAction(brain, BlobInteractionType.Gift))
@@ -101,19 +82,16 @@ namespace AgentLogic.BehaviorTree
                         new BTActionNode(new BlobInteractWithWaitAction(brain, () =>
                         {
                             brain.ModifyEmotion("happiness", 0.1f);
-                            //_agent.Blackboard.Set("hasObject", true);
                             //Debug.Log("Picked up object");
                         }, () =>
                         {
                            brain.ModifyEmotion("happiness", -0.1f);
                             //Debug.Log("Failed to pick up object");
                         })),
-                    }
-                ),
+                    }),
                 new BTSequenceNode(new List<BTNode> // Wander
                 {
-                    new BTConditionNode(() => 
-                        Random.value <= Mathf.Clamp01(brain.emotions["happiness"].Value / 2f + 0.5f)),
+                    new BTConditionNode(() => DecisionUtils.CanWander(brain)),
                     new BTActionNode(new BlobWanderTargetAction(brain)),
                     new BTActionNode(new BlobGoToTargetAction(brain)),
                 }),

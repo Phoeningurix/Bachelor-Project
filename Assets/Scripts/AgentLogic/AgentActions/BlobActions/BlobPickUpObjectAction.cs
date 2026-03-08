@@ -25,7 +25,7 @@ namespace AgentLogic.AgentActions.BlobActions
                 _agent.ModifyEmotion("happiness", -0.1f);
                 Debug.Log("Failed to pick up object");
             });
-            return true; // TODO: what?
+            return true; 
         }
     }
 }

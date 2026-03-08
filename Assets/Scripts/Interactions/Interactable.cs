@@ -19,8 +19,7 @@ namespace Interactions
             _renderer = GetComponent<SpriteRenderer>();
             _collider = GetComponent<Collider2D>();
         }
-
-        // TODO: Something for waiting
+        
         public virtual void Invoke(BlobBrain brain, Action onSuccess, Action onFailure)
         {
             if ((!consumable || usesLeft > 0) && GetInteractionStatus(brain))

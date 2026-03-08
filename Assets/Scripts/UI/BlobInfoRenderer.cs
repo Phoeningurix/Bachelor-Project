@@ -240,7 +240,6 @@ namespace UI
             if (_currentBrain != null)
             {
                 _currentBrain.personalityTraits["extraversion"].Value = e.newValue;
-                //TODO Extraversion could be used to calculate the "agentInteractionRadius"
             }
         }
 

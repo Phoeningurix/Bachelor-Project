@@ -148,7 +148,7 @@ namespace AgentLogic.FSM
                 new(() =>
                 {
                     bool interrupting = DecisionUtils.CheckInterruptCurrentAction(brain);
-                    if (interrupting) Debug.LogWarning(brain.name + " - WantsToInterruptCurrentAction evaluated to True");
+                    if (interrupting) Debug.Log(brain.name + " - WantsToInterruptCurrentAction evaluated to True");
                     return interrupting;
                 });
         }

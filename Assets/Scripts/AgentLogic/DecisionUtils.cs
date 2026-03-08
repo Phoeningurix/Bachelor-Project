@@ -55,5 +55,46 @@ namespace AgentLogic
             probability *= brain.DeltaTime(); // so that the probability is per second
             return CheckProbability(probability);
         }
+        
+        //Interaction Weights
+        //TODO Choose weights
+        public static float GetGreetingWeight(this BlobBrain brain)
+        {
+            return 0.5f + brain.emotions.GetBetween01("happiness") * 0.2f 
+                  + brain.personalityTraits.GetBetween01("extraversion") * 0.2f 
+                  - brain.emotions.GetBetween01("fear") * 0.1f;
+        }
+        
+        public static float GetComplimentWeight(this BlobBrain brain)
+        {
+            return 0.3f + brain.emotions.GetBetween01("happiness") * 0.2f 
+                   + brain.personalityTraits.GetBetween01("extraversion") * 0.1f 
+                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.3f
+                   - brain.emotions.GetBetween01("fear") * 0.1f
+                   - brain.emotions.GetBetween01("anger") * 0.1f;
+        }
+        
+        public static float GetGiftWeight(this BlobBrain brain)
+        {
+            return 0.5f + brain.emotions.GetBetween01("happiness") * 0.2f 
+                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.3f
+                   - brain.emotions.GetBetween01("anger") * 0.1f;
+        }
+        
+        public static float GetInsultWeight(this BlobBrain brain)
+        {
+            return 0.5f + brain.emotions.GetBetween01("anger") * 0.3f 
+                   - brain.personalityTraits.GetBetween01("agreeableness") * 0.7f
+                   - brain.emotions.GetBetween01("happiness") * 0.1f;
+        }
+        
+        public static float GetScreamWeight(this BlobBrain brain)
+        {
+            return + brain.emotions.GetBetween01("anger") * 0.5f
+                   - brain.personalityTraits.GetBetween01("agreeableness") * 0.4f
+                   + brain.personalityTraits.GetBetween01("extraversion") * 0.1f
+                   + brain.emotions.GetBetween01("fear") * 0.3f;
+        }
+        
     }
 }
