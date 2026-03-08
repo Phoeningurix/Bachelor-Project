@@ -1,5 +1,6 @@
 ﻿using System;
 using AgentLogic.FSM.FSMStates;
+using Interactions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -24,21 +25,25 @@ namespace AgentLogic.FSM
             var sendInteraction = new FSMSendInteractionState(brain);
             var onInteractionIgnored = new FSMOnInteractionIgnoredState(brain);
             var interactionFinished = new FSMSendInteractionFinishedState(brain);
+            var goToTargetObject = new FSMInteractWithObjectState(brain);
+            var reachedTargetObject = new FSMReachedTargetObjectState(brain);
+            var objectInteractionFinished = new FSMObjectInteractionFinishedState();
 
 
             
             // Normale States
             At(idle, finishedIdle, IsNotIdle());
             At(finishedIdle, sendInteraction, IsNearAgents() & WantsToInteract());
+            At(finishedIdle, goToTargetObject, IsNearObjects() & WantsToInteractWithObject());
             At(finishedIdle, wander, CanWander());
             At(finishedIdle, idle, Always());
             
             
-            
             At(wander, reachedTarget, ReachedTarget());
             
-            At(reachedTarget, wander, CanWander());
             At(reachedTarget, sendInteraction, IsNearAgents() & WantsToInteract());
+            At(reachedTarget, goToTargetObject, IsNearObjects() & WantsToInteractWithObject());
+            At(reachedTarget, wander, CanWander());
             At(reachedTarget, idle, Always());
             
             At(respond, responseFinished, DelayCondition(
@@ -47,6 +52,7 @@ namespace AgentLogic.FSM
                 )
             );
             
+            At(responseFinished, goToTargetObject, IsNearObjects() & WantsToInteractWithObject());
             At(responseFinished, wander, CanWander());
             At(responseFinished, idle, Always());
             
@@ -54,8 +60,17 @@ namespace AgentLogic.FSM
             At(onInteractionIgnored, interactionFinished, Always());
             At(sendInteraction, interactionFinished, HasReceivedResponse());
             
+            At(interactionFinished, goToTargetObject, IsNearObjects() & WantsToInteractWithObject());
             At(interactionFinished, wander, CanWander());
             At(interactionFinished, idle, Always());
+            
+            At(goToTargetObject, reachedTargetObject, ReachedTargetObject());
+            
+            At(reachedTargetObject, objectInteractionFinished, ObjectInteractionFinished());
+            
+            At(objectInteractionFinished, sendInteraction, IsNearAgents() & WantsToInteract());
+            At(objectInteractionFinished, wander, CanWander());
+            At(objectInteractionFinished, idle, Always());
             
             // Unterbrechende States
             Ata(idle, SpacePressed());
@@ -114,6 +129,19 @@ namespace AgentLogic.FSM
                 brain.interactionLocator.IsNearAgents(brain.Blackboard.Get<float>("agentInteractionRadius")));
 
             BoolPredicate WantsToInteract() => new(() => DecisionUtils.CheckSendInteraction(brain));
+
+            BoolPredicate ReachedTargetObject() => new(() =>
+                Vector3.Distance(brain.transform.position,
+                    brain.Blackboard.Get<Interactable>("targetObject").transform.position) <=
+                brain.Blackboard.Get<float>("objectInteractionRadius"));
+
+            BoolPredicate IsNearObjects() => new(() => brain
+                .interactionLocator
+                .IsNearObjects(brain.Blackboard.Get<float>("objectVisibilityRadius")));
+            
+            BoolPredicate WantsToInteractWithObject() => new(() => DecisionUtils.CheckInteractWithObject(brain));
+
+            BoolPredicate ObjectInteractionFinished() => new(() => reachedTargetObject.InteractionFinished);
         }
 
         public void Tick()

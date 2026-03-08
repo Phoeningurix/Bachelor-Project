@@ -30,9 +30,23 @@ namespace AgentLogic
             return CheckProbability(1f - probability);
         }
 
+        public static bool CheckInteractWithObject(BlobBrain brain)
+        {
+            float probability = 0.3f - brain.emotions["happiness"].Value * 0.5f
+                                + brain.personalityTraits["openness"].Value * 0.5f;
+            float r = Random.value;
+            return r < Mathf.Clamp01(probability);
+        }
+
         public static bool CanWander(BlobBrain brain)
         {
             return Random.value <= brain.emotions.GetBetween01("happiness");
+        }
+
+        public static float GetSpeed(BlobBrain brain)
+        {
+            float happiness = brain.emotions.GetBetween01("happiness");
+            return brain.Blackboard.Get<float>("wanderSpeed") * Mathf.Lerp(0.5f, 1.5f, happiness);
         }
         
     }

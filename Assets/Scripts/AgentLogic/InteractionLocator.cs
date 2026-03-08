@@ -69,6 +69,34 @@ namespace AgentLogic
             return FindBlobBrainsInRange(radius).Count > 0;
         }
 
+        public bool IsNearObjects(float radius)
+        {
+            return FindInteractablesInRange(radius).Count > 0;
+        }
+
+        public Interactable GetClosestInteractableInRange(float radius)
+        {
+            List<Interactable> interactables =
+                FindInteractablesInRange(radius);
+            
+            Vector3 position = transform.position;
+
+            // Get the nearest Object
+            Interactable nearestObject = null;
+            float minDistance = float.MaxValue;
+            foreach (Interactable interactable in interactables)
+            {
+                float distance = Vector3.Distance(position, interactable.transform.position);
+                if (distance < minDistance)
+                {
+                    nearestObject = interactable;
+                    minDistance = distance;
+                }
+            }
+            
+            return nearestObject;
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;

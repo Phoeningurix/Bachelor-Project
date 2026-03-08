@@ -89,17 +89,8 @@ namespace AgentLogic.BehaviorTree
                         new BTConditionNode(() => 
                             brain
                                 .interactionLocator
-                                .FindInteractablesInRange(
-                                    brain.Blackboard.Get<float>("objectVisibilityRadius"))
-                                .Count > 0),
-                        new BTConditionNode(() =>
-                            {
-                                if (brain.Blackboard.Get<bool>("hasObject")) return false;
-                                float probability = 0.3f - brain.emotions["happiness"].Value * 0.5f
-                                                    + brain.personalityTraits["openness"].Value * 0.5f;
-                                float r = Random.value;
-                                return r < Mathf.Clamp01(probability);
-                            }),
+                                .IsNearObjects(brain.Blackboard.Get<float>("objectVisibilityRadius"))),
+                        new BTConditionNode(() => DecisionUtils.CheckInteractWithObject(brain)),
                         new BTActionNode(new BlobSetTargetObjectAction(brain)),
                         new BTActionNode(new BlobGoToTargetAction(brain)), 
                         new BTConditionNode(() => Vector3.Distance(brain.transform.position, 

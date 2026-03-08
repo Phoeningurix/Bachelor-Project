@@ -17,7 +17,7 @@ namespace AgentLogic.FSM
             
             var wander = new FSMWanderState(brain);
             var idle = new FSMIdleState(brain);
-            var getObject = new FSMGatherObjectState();
+            var getObject = new FSMInteractWithObjectState(brain);
             
             // Normale States
             At(idle, wander, CanWander() & IsNotIdle());

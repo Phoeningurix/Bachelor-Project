@@ -8,9 +8,6 @@ namespace AgentLogic.FSM.FSMStates
         private readonly BlobBrain _brain;
         private readonly NavMeshAgent _navMeshAgent;
 
-        public float TimeStuck;
-        private Vector3 _lastPosition = Vector3.zero;
-
         public FSMWanderState(BlobBrain brain)
         {
             _brain = brain;
@@ -20,24 +17,7 @@ namespace AgentLogic.FSM.FSMStates
         
         public void Tick()
         {
-            float happiness = _brain.emotions.GetBetween01("happiness");
-            float speed = _brain.Blackboard.Get<float>("wanderSpeed") * Mathf.Lerp(0.5f, 1.5f, happiness);
-            
-            /*Vector3 target = _brain.Blackboard.Get<Vector3>("wanderTarget");
-            
-            _brain.transform.position = Vector3.MoveTowards(_brain.transform.position,
-                target,
-                speed * _brain.DeltaTime()
-            );*/
-
-            _navMeshAgent.speed = speed;
-            
-            _lastPosition = _brain.transform.position;
-
-            if (Vector3.Distance(_lastPosition, _brain.transform.position) >= 0f)
-            {
-                TimeStuck += _brain.DeltaTime();
-            }
+            _navMeshAgent.speed = DecisionUtils.GetSpeed(_brain);
         }
 
         public void OnEnter()
