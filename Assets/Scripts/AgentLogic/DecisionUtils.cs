@@ -34,8 +34,7 @@ namespace AgentLogic
         {
             float probability = 0.3f - brain.emotions["happiness"].Value * 0.5f
                                 + brain.personalityTraits["openness"].Value * 0.5f;
-            float r = Random.value;
-            return r < Mathf.Clamp01(probability);
+            return CheckProbability(probability);
         }
 
         public static bool CanWander(BlobBrain brain)
@@ -48,6 +47,13 @@ namespace AgentLogic
             float happiness = brain.emotions.GetBetween01("happiness");
             return brain.Blackboard.Get<float>("wanderSpeed") * Mathf.Lerp(0.5f, 1.5f, happiness);
         }
-        
+
+        public static bool CheckInterruptCurrentAction(BlobBrain brain)
+        {
+            // has to be low because it is checked every tick
+            float probability = 0.05f - brain.personalityTraits["conscientiousness"].Value * 0.15f;  // 0 - 0.3
+            probability *= brain.DeltaTime(); // so that the probability is per second
+            return CheckProbability(probability);
+        }
     }
 }

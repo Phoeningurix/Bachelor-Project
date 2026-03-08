@@ -75,6 +75,7 @@ namespace AgentLogic.FSM
             // Unterbrechende States
             Ata(idle, SpacePressed());
             Ata(respond, HasRequests() & !CheckIgnoreRequest());
+            Ata(idle, WantsToInterruptCurrentAction());
             
             void At(IState from, IState to, Func<bool> condition) => 
                 _stateMachine.AddTransition(from, to, condition);
@@ -142,6 +143,14 @@ namespace AgentLogic.FSM
             BoolPredicate WantsToInteractWithObject() => new(() => DecisionUtils.CheckInteractWithObject(brain));
 
             BoolPredicate ObjectInteractionFinished() => new(() => reachedTargetObject.InteractionFinished);
+
+            BoolPredicate WantsToInterruptCurrentAction() =>
+                new(() =>
+                {
+                    bool interrupting = DecisionUtils.CheckInterruptCurrentAction(brain);
+                    if (interrupting) Debug.LogWarning(brain.name + " - WantsToInterruptCurrentAction evaluated to True");
+                    return interrupting;
+                });
         }
 
         public void Tick()
