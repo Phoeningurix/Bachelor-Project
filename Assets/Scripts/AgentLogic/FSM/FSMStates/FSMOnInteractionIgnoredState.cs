@@ -17,7 +17,8 @@ namespace AgentLogic.FSM.FSMStates
 
         public void OnEnter()
         {
-            Debug.Log("FSMOnInteractionIgnoredState");
+            Debug.Log(_agent.name + " is entering FSMOnInteractionIgnoredState");
+
             // TODO: adjust emotions on ignored
         }
 

@@ -18,18 +18,20 @@ namespace AgentLogic.FSM
             var wander = new FSMWanderState(brain);
             var reachedTarget = new FSMReachedTargetState(); // transition state
             var idle = new FSMIdleState(brain);
+            var finishedIdle = new FSMFinishedIdleState();
             var respond = new FSMRespondToInteractionRequestState(brain);
-            var responseFinished = new FSMFinishedResponseState(); // transition state
+            var responseFinished = new FSMFinishedResponseState(brain); // transition state
             var sendInteraction = new FSMSendInteractionState(brain);
             var onInteractionIgnored = new FSMOnInteractionIgnoredState(brain);
-            var interactionFinished = new FSMSendInteractionFinishedState();
+            var interactionFinished = new FSMSendInteractionFinishedState(brain);
 
 
             
             // Normale States
-            At(idle, sendInteraction, IsNearAgents() & WantsToInteract());
-            At(idle, wander, CanWander() & IsNotIdle());
-            At(idle, idle, IsNotIdle());
+            At(idle, finishedIdle, IsNotIdle());
+            At(finishedIdle, sendInteraction, IsNearAgents() & WantsToInteract());
+            At(finishedIdle, wander, CanWander());
+            At(finishedIdle, idle, Always());
             
             
             
@@ -74,8 +76,7 @@ namespace AgentLogic.FSM
             BoolPredicate ReachedTarget() => new(() => 
                 brain.NavMeshAgent.enabled && !brain.NavMeshAgent.pathPending && brain.NavMeshAgent.remainingDistance <= brain.NavMeshAgent.stoppingDistance);
 
-            BoolPredicate CanWander() => new(() =>
-                Random.value <= brain.emotions.GetBetween01("happiness"));
+            BoolPredicate CanWander() => new(() => DecisionUtils.CanWander(brain));
 
             BoolPredicate SpacePressed() => new(() => Keyboard.current.spaceKey.wasPressedThisFrame);
             BoolPredicate Always() => new(() => true);
@@ -110,8 +111,7 @@ namespace AgentLogic.FSM
             BoolPredicate HasReceivedResponse() => new(() => brain.Blackboard.Get<bool>("receivedResponse"));
 
             BoolPredicate IsNearAgents() => new(() =>
-                brain.interactionLocator.FindBlobBrainsInRange(
-                    brain.Blackboard.Get<float>("agentInteractionRadius")).Count > 0);
+                brain.interactionLocator.IsNearAgents(brain.Blackboard.Get<float>("agentInteractionRadius")));
 
             BoolPredicate WantsToInteract() => new(() => DecisionUtils.CheckSendInteraction(brain));
         }

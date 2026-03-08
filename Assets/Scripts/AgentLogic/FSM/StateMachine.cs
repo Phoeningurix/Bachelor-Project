@@ -18,6 +18,7 @@ namespace AgentLogic.FSM
         {
             //Debug.Log("current state: " + _currentState.GetType().ToString());
             var transition = GetTransition();
+            if (transition != null) Debug.Log("from " + _currentState.GetType() + " to " + transition.GetType() + ", " + transition.To.GetType());
             if (transition != null) SetState(transition.To);
             _currentState?.Tick();
         }

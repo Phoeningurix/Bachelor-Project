@@ -20,6 +20,7 @@ namespace AgentLogic.FSM.FSMStates
 
         public void OnEnter()
         {
+            Debug.Log(_brain.name + " is entering FSMRespondToInteractionRequestState");
             if (_brain.InteractionRequests.Count > 0)
             {
                 _interaction = _brain.InteractionRequests[0];

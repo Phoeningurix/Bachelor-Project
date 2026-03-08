@@ -21,13 +21,18 @@ namespace AgentLogic
         
         public static bool CheckSendInteraction(BlobBrain brain)
         {
-            //if (Keyboard.current.iKey.isPressed)
-            //    return true;
+            if (Keyboard.current.iKey.isPressed)
+                return true;
             // TODO adjust values
-            float probability = 0.8f + brain.emotions["happiness"].Value * 0.1f
+            float probability = 0.3f + brain.emotions["happiness"].Value * 0.1f
                                      + brain.personalityTraits["extraversion"].Value * 0.4f
                                 - brain.emotions["fear"].Value * 0.2f;
             return CheckProbability(1f - probability);
+        }
+
+        public static bool CanWander(BlobBrain brain)
+        {
+            return Random.value <= brain.emotions.GetBetween01("happiness");
         }
         
     }

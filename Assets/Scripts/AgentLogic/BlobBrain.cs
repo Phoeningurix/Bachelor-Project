@@ -100,8 +100,18 @@ namespace AgentLogic
             Gizmos.color = Color.orange;
             Gizmos.DrawWireSphere(transform.position, Blackboard.Get<float>("objectVisibilityRadius"));
         }
-        
-        
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            foreach (BlobInteraction interaction in InteractionRequests)
+            {
+                // draw line between initiator and reactor
+                //Gizmos.DrawLine(interaction.Initiator.transform.position, interaction.Reactor.transform.position);
+            }
+        }
+
+
         public void ModifyEmotion(string emotion, float value)
         {
             float factor = Mathf.Lerp(0.1f, 2f, personalityTraits.GetBetween01("neuroticism"));

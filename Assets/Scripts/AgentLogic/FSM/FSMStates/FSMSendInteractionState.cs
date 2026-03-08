@@ -21,7 +21,8 @@ namespace AgentLogic.FSM.FSMStates
 
         public void OnEnter()
         {
-            Debug.Log("FSM SendInteractionState");
+            Debug.Log(_agent.name + " is entering FSMSendInteractionState");
+
             _agent.Blackboard.Set("receivedResponse", false);
             _agent.Blackboard.Set("agentInteractionInvoked", Time.time);
             List<BlobBrain> neighbors = _agent.interactionLocator.FindBlobBrainsInRange(_agent.Blackboard.Get<float>("agentInteractionRadius"));

@@ -64,6 +64,11 @@ namespace AgentLogic
             return foundBlobBrains;
         }
 
+        public bool IsNearAgents(float radius)
+        {
+            return FindBlobBrainsInRange(radius).Count > 0;
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
