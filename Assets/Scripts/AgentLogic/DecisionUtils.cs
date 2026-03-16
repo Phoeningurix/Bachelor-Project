@@ -14,8 +14,8 @@ namespace AgentLogic
             //if (Keyboard.current.iKey.isPressed)
             //    return true;
             float probability = 0.8f + brain.emotions["happiness"].Value * 0.1f
-                                     + brain.personalityTraits["extraversion"].Value * 0.4f
-                                - brain.emotions["fear"].Value * 0.2f;
+                                     + brain.personalityTraits["extraversion"].Value * 0.7f
+                                - brain.emotions["fear"].Value * 0.6f;
             return CheckProbability(1f - probability);
         }
         
@@ -32,8 +32,8 @@ namespace AgentLogic
 
         public static bool CheckInteractWithObject(BlobBrain brain)
         {
-            float probability = 0.3f - brain.emotions["happiness"].Value * 0.5f
-                                + brain.personalityTraits["openness"].Value * 0.5f;
+            float probability = 0.3f + brain.emotions["happiness"].Value * 0.1f
+                                + brain.personalityTraits["openness"].Value * 0.7f;
             return CheckProbability(probability);
         }
 
@@ -50,9 +50,9 @@ namespace AgentLogic
 
         public static bool CheckInterruptCurrentAction(BlobBrain brain)
         {
-            // has to be low because it is checked every tick
+            // muss sehr niedrig sein, da sie in jedem Tick getestet wird
             float probability = 0.05f - brain.personalityTraits["conscientiousness"].Value * 0.15f;  // 0 - 0.3
-            probability *= brain.DeltaTime(); // so that the probability is per second
+            probability *= brain.DeltaTime(); // Wahrscheinlichkeit pro Sekunde
             return CheckProbability(probability);
         }
         
@@ -61,24 +61,24 @@ namespace AgentLogic
         public static float GetGreetingWeight(this BlobBrain brain)
         {
             return 0.5f + brain.emotions.GetBetween01("happiness") * 0.2f 
-                  + brain.personalityTraits.GetBetween01("extraversion") * 0.2f 
-                  - brain.emotions.GetBetween01("fear") * 0.1f;
+                  + brain.personalityTraits.GetBetween01("agreeableness") * 0.5f 
+                  - brain.emotions.GetBetween01("anger") * 0.2f;
         }
         
         public static float GetComplimentWeight(this BlobBrain brain)
         {
-            return 0.3f + brain.emotions.GetBetween01("happiness") * 0.2f 
-                   + brain.personalityTraits.GetBetween01("extraversion") * 0.1f 
-                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.3f
+            return 0.2f + brain.emotions.GetBetween01("happiness") * 0.2f 
+                   + brain.personalityTraits.GetBetween01("extraversion") * 0.2f 
+                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f
                    - brain.emotions.GetBetween01("fear") * 0.1f
-                   - brain.emotions.GetBetween01("anger") * 0.1f;
+                   - brain.emotions.GetBetween01("anger") * 0.2f;
         }
         
         public static float GetGiftWeight(this BlobBrain brain)
         {
-            return 0.5f + brain.emotions.GetBetween01("happiness") * 0.2f 
-                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.3f
-                   - brain.emotions.GetBetween01("anger") * 0.1f;
+            return 0.3f + brain.emotions.GetBetween01("happiness") * 0.4f 
+                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f
+                   - brain.emotions.GetBetween01("anger") * 0.3f;
         }
         
         public static float GetInsultWeight(this BlobBrain brain)
@@ -86,14 +86,15 @@ namespace AgentLogic
             return 0.5f + brain.emotions.GetBetween01("anger") * 0.3f 
                    - brain.personalityTraits.GetBetween01("agreeableness") * 0.7f
                    - brain.emotions.GetBetween01("happiness") * 0.1f;
+            
         }
         
         public static float GetScreamWeight(this BlobBrain brain)
         {
-            return + brain.emotions.GetBetween01("anger") * 0.5f
-                   - brain.personalityTraits.GetBetween01("agreeableness") * 0.4f
-                   + brain.personalityTraits.GetBetween01("extraversion") * 0.1f
-                   + brain.emotions.GetBetween01("fear") * 0.3f;
+            return 0.2f + brain.emotions.GetBetween01("anger") * 0.5f
+                   - brain.personalityTraits.GetBetween01("agreeableness") * 0.6f
+                   + brain.personalityTraits.GetBetween01("extraversion") * 0.2f
+                   + brain.emotions.GetBetween01("fear") * 0.7f;
         }
         
     }

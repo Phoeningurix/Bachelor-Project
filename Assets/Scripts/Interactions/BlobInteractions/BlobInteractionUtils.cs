@@ -43,22 +43,31 @@ namespace Interactions.BlobInteractions
         {
             Dictionary<BlobInteractionResponseType, float> weights = new Dictionary<BlobInteractionResponseType, float>
             {
+                // gewöhnliche Reaktion -> mittlere Basiswahrscheinlichkeit
+                // seltene Reaktion -> niedrige Basiswahrscheinlichkeit
                 
-                [BlobInteractionResponseType.Wave] = 0.5f 
-                    - brain.emotions.GetBetween01("anger") * 0.3f 
-                    + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f,
-                [BlobInteractionResponseType.ComplimentBack] = 0.3f 
-                   - brain.emotions.GetBetween01("anger") * 0.4f 
-                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.6f
-                - brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
-                [BlobInteractionResponseType.ThankYou] = 0.5f 
+                // neutral bis freundliche Reaktion (häufig): bei hoher Agreeableness, nicht bei hohem Anger 
+                [BlobInteractionResponseType.Wave] = 0.5f   
+                    - brain.emotions.GetBetween01("anger") * 0.2f 
+                    + brain.personalityTraits.GetBetween01("agreeableness") * 0.5f,
+                // freundliche Reaktion (selten): bei hoher Agreeableness, nicht bei Anger 
+                [BlobInteractionResponseType.ComplimentBack] = 0.2f     
+                   - brain.emotions.GetBetween01("anger") * 0.6f 
+                   + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f,
+                //- brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
+                // freundliche Reaktion (normal): bei hoher Agreeableness, nicht bei hohem Anger 
+                [BlobInteractionResponseType.ThankYou] = 0.4f   
                      - brain.emotions.GetBetween01("anger") * 0.3f 
-                     + brain.personalityTraits.GetBetween01("agreeableness") * 0.7f, 
-                [BlobInteractionResponseType.ScreamBack] = 0.2f 
+                     + brain.personalityTraits.GetBetween01("agreeableness") * 0.6f, 
+                // unfreundliche Reaktion (ängstlich oder wütend): bei Anger oder Fear, nicht bei hoher Agreeableness
+                [BlobInteractionResponseType.ScreamBack] = 0.2f     
                    + brain.emotions.GetBetween01("anger") * 0.5f 
-                   - brain.personalityTraits.GetBetween01("agreeableness") * 0.4f
-                   + brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
-                [BlobInteractionResponseType.InsultBack] = 0.5f 
+                   + brain.emotions.GetBetween01("fear") * 0.7f
+                   - brain.personalityTraits.GetBetween01("agreeableness") * 0.6f
+                   - brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
+                  // + brain.personalityTraits.GetBetween01("extraversion") * 0.2f,
+                // unfreundliche Reaktion (normal): bei hohem Anger, nicht bei hoher Agreeableness
+                [BlobInteractionResponseType.InsultBack] = 0.5f     
                     + brain.emotions.GetBetween01("anger") * 0.3f
                     - brain.personalityTraits.GetBetween01("agreeableness") * 0.7f,
                 
