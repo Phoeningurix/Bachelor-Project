@@ -25,9 +25,9 @@ namespace AgentLogic
                 return true;
             // TODO adjust values
             float probability = 0.3f + brain.emotions["happiness"].Value * 0.1f
-                                     + brain.personalityTraits["extraversion"].Value * 0.4f
-                                - brain.emotions["fear"].Value * 0.2f;
-            return CheckProbability(1f - probability);
+                                     + brain.personalityTraits["extraversion"].Value * 0.6f
+                                - brain.emotions["fear"].Value * 0.3f;
+            return CheckProbability(probability);
         }
 
         public static bool CheckInteractWithObject(BlobBrain brain)
