@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Szenario 2 Interaktionen FSM.unity
     guid: fe0b77067798ed54ab2417666da5776d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Szenario 3  Gruppe Gleiche Merkmale.unity
     guid: 2da82231c7246874580177be2b4ef217
   - enabled: 1
