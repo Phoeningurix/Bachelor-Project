@@ -15,6 +15,7 @@ namespace AgentLogic.AgentActions.BlobActions
         {
             float openness = _agent.personalityTraits.GetBetween01("openness");
             float radius = Mathf.Lerp(1f, 9f, openness);
+            _agent.Blackboard.Set("wanderTargetRadius", radius);
             
 
             Vector2 dir = Random.insideUnitCircle.normalized;

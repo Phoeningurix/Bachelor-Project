@@ -1,4 +1,5 @@
 ﻿
+using System;
 using AgentLogic.AgentActions;
 using UnityEngine;
 
@@ -19,9 +20,9 @@ namespace AgentLogic.BehaviorTree
             {
                 return _action.Tick() ? NodeState.Success : NodeState.Running;
             }
-            catch
+            catch (Exception e)
             {
-                Debug.LogWarning($"Failed ticking action '{_action}'.");
+                Debug.LogWarning($"Failed ticking action '{_action}'. Message: {e.Message}");
                 return NodeState.Failure;
             }
         }

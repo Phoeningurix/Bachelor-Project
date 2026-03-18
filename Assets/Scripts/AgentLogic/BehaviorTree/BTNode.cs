@@ -12,11 +12,11 @@ namespace AgentLogic.BehaviorTree
             Running
         }
 
-        private readonly List<BTNode> _children;
+        protected readonly List<BTNode> _children;
         
         protected int CurrentChildIndex = 0;
 
-        protected void Reset() => CurrentChildIndex = 0;
+        protected virtual void Reset() => CurrentChildIndex = 0;
 
         public BTNode CurrentChild => _children[CurrentChildIndex];
         

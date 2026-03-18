@@ -16,7 +16,7 @@ namespace AgentLogic.BehaviorTree
                 {
                     new BTConditionNode(() => Random.value <= Mathf.Clamp01(brain.emotions["happiness"].Value / 2f + 0.5f)),
                     new BTActionNode(new BlobWanderTargetAction(brain)),
-                    new BTActionNode(new BlobWanderAction(brain)),
+                    new BTActionNode(new BlobGoToTargetAction(brain)),
                 }),
                 new BTActionNode(new BlobIdleAction(brain)),
             });

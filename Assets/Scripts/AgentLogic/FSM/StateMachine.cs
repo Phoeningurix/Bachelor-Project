@@ -18,6 +18,7 @@ namespace AgentLogic.FSM
         {
             //Debug.Log("current state: " + _currentState.GetType().ToString());
             var transition = GetTransition();
+            if (transition != null) Debug.Log("from " + _currentState.GetType() + " to " + transition.GetType() + ", " + transition.To.GetType());
             if (transition != null) SetState(transition.To);
             _currentState?.Tick();
         }
@@ -38,6 +39,7 @@ namespace AgentLogic.FSM
 
         public void SetState(IState state)
         {
+            // call onExit and onEnter even when transitioning to same state as before
             //if (state == _currentState) return;
             
             _currentState?.OnExit();
@@ -51,7 +53,7 @@ namespace AgentLogic.FSM
 
         public void AddTransition(IState from, IState to, Func<bool> predicate)
         {
-            if (_transitions.TryGetValue(from.GetType(), out var transitions) == false)
+            if (!_transitions.TryGetValue(from.GetType(), out var transitions))
             {
                 transitions = new List<Transition>();
                 _transitions[from.GetType()] = transitions;
