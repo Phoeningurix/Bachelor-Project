@@ -57,7 +57,6 @@ namespace AgentLogic
         }
         
         //Interaction Weights
-        //TODO Choose weights
         public static float GetGreetingWeight(this BlobBrain brain)
         {
             return 0.5f + brain.emotions.GetBetween01("happiness") * 0.2f 

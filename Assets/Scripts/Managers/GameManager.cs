@@ -17,7 +17,7 @@ namespace Managers
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
             
             // Get other managers 
             Instance.BlobSelectionManager = GetComponentInChildren<BlobSelectionManager>();

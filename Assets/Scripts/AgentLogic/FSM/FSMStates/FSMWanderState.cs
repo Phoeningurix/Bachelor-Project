@@ -23,7 +23,7 @@ namespace AgentLogic.FSM.FSMStates
         public void OnEnter()
         {
             // Target berechnen
-            float radius = Mathf.Lerp(3f, 9f, _brain.personalityTraits.GetBetween01("openness"));
+            float radius = Mathf.Lerp(1f, 9f, _brain.personalityTraits.GetBetween01("openness"));
             
             Vector2 dir = Random.insideUnitCircle.normalized;
             Vector3 target = _brain.transform.position + new Vector3(dir.x, dir.y, 0f) * radius;
